@@ -1,5 +1,4 @@
 call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 
 au VimResized * :wincmd =
 set fileencodings=utf-8,cp950,big5,sjis,euc-jp,gbk,euc-kr,utf-bom,iso-2022-jp,iso8859-1,ucs-bom
