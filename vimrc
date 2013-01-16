@@ -4,6 +4,7 @@ au VimResized * :wincmd =
 filetype plugin on
 set fileencodings=utf-8,cp950,big5,sjis,euc-jp,gbk,euc-kr,utf-bom,iso-2022-jp,iso8859-1,ucs-bom
 set termencoding=utf-8
+set encoding=utf-8
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
