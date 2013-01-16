@@ -1,0 +1,74 @@
+snippet win
+	#ifdef _WIN32 /* Defined for applications for Win32 and Win64. */
+	${1}
+	#endif
+snippet math
+	#ifdef _WIN32
+	#	define _USE_MATH_DEFINES
+	#endif
+snippet co
+	/** ${1} */
+snippet sl
+	/*===========================================================================*/
+# linux driver
+snippet driver
+	#include <linux/init.h>
+	#include <linux/module.h>
+
+	MODULE_LICENSE("Dual BSD/GPL");
+
+	static int hello_init(void)
+	{
+	    printk(KERN_INFO "Hello, world\n");
+
+	    return 0;
+	}
+
+	static void hello_exit(void)
+	{
+	    printk(KERN_INFO "Goodbye, cruel world\n");
+	}
+
+	module_init(hello_init);
+	module_exit(hello_exit);
+snippet opengl
+	#ifdef __APPLE__
+	#	include <OpenGL/gl.h>
+	#	include <OpenGL/glu.h>
+	#	include <GLUT/glut.h>
+	#else
+	#	ifdef _WIN32
+	#		include <windows.h>
+	#	endif
+	#	include <GL/gl.h>
+	#	include <GL/glu.h>
+	#	include <GL/glut.h>
+	#endif
+snippet ff
+	#ifndef ${1:`'__'.toupper(Filename('', 'UNTITLED')).'_H__'`}
+	#define $1
+
+	${2}
+
+	#endif /* end of $1 */
+snippet cpp
+	#ifdef __cplusplus
+	extern "C" {
+	#endif /* endif __cpluscplus */
+	${1}
+	#ifdef __cplusplus
+	}
+	#endif /* endif __cpluscplus */
+# open file
+snippet open
+	FILE *$1 = NULL;
+
+	if ((${1:fp} = fopen(${2:file_name}, "${3:r}")) != NULL) {
+		${4}
+	} else {
+		fprintf(stderr, "can't open file ");
+		perror($2);
+		exit(-1);
+	}
+
+	fclose($1);
