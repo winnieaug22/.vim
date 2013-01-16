@@ -46,3 +46,6 @@
 [submodule "bundle/tcomment"]
 	path = bundle/tcomment
 	url = https://github.com/vim-scripts/tComment.git
+[submodule "bundle/stl-syntax"]
+	path = bundle/stl-syntax
+	url = https://github.com/jdevera/vim-stl-syntax.git
