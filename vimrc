@@ -34,6 +34,8 @@ nmap <silent> <C-J> :%!xxd -r<CR>
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 
+autocmd Filetype c     set syntax=c.doxygen
+autocmd Filetype cpp   set syntax=cpp.doxygen
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
