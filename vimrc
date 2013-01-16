@@ -18,6 +18,7 @@ set t_Co=256
 set visualbell
 set background=dark
 set fileformat=unix
+set fileformats=unix
 colorscheme gentooish
 syntax on
 " go to last position
