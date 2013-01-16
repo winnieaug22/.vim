@@ -33,3 +33,11 @@ nmap <silent> <C-J> :%!xxd -r<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" custom setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:snips_author="Wen-Chi Guo"
+let g:snips_email="campbellmath@gmail.com"
+let g:DoxygenToolkit_authorName=g:snips_author.' <'.g:snips_email.'>'
