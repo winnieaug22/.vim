@@ -40,3 +40,6 @@
 [submodule "bundle/doxygentoolkit"]
 	path = bundle/doxygentoolkit
 	url = https://github.com/vim-scripts/DoxygenToolkit.vim.git
+[submodule "bundle/timestamp"]
+	path = bundle/timestamp
+	url = https://github.com/vim-scripts/timestamp.vim.git
