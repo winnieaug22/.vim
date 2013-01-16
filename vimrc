@@ -15,6 +15,7 @@ set t_Co=256
 colorscheme gentooish
 syntax on
 
+" for Powerline
 set laststatus=2
 let g:Powerline_symbols = 'unicode'
 
@@ -34,8 +35,13 @@ nmap <silent> <C-J> :%!xxd -r<CR>
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 
+" highlight doxygen syntax
 autocmd Filetype c     set syntax=c.doxygen
 autocmd Filetype cpp   set syntax=cpp.doxygen
+autocmd Filetype java  set syntax=java.doxygen
+
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
