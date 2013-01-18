@@ -61,3 +61,6 @@
 [submodule "bundle/drawit"]
 	path = bundle/drawit
 	url = https://github.com/vim-scripts/DrawIt
+[submodule "bundle/alternate"]
+	path = bundle/alternate
+	url = https://github.com/dantler/vim-alternate.git
