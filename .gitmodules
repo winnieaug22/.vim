@@ -64,3 +64,6 @@
 [submodule "bundle/alternate"]
 	path = bundle/alternate
 	url = https://github.com/dantler/vim-alternate.git
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = https://github.com/vim-scripts/matchit.zip.git
