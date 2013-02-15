@@ -9,7 +9,7 @@ set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 set nocompatible
-set expandtab
+set expandtab " Use spaces instead of tabs
 set nolist
 set hlsearch
 set number
@@ -32,10 +32,11 @@ set laststatus=2
 let g:Powerline_symbols = 'unicode'
 
 " tab mapping
-map tl :tabnext<CR>
-map th :tabprev<CR>
-map tn :tabedit 
 map td :tabclose<CR>
+map th :tabprev<CR>
+map tl :tabnext<CR>
+map tm :tabmove
+map tn :tabedit 
 "remove all white space
 nmap ,dw :%s/\s\+$//g<CR>
 " make <Backspace> act as <Delete> in Visual mode
@@ -48,6 +49,8 @@ autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
+
+autocmd Filetype c,cpp set foldmethod=syntax
 
 " highlight doxygen syntax
 autocmd Filetype c     set syntax=c.doxygen
