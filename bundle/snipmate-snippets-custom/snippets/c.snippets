@@ -72,3 +72,41 @@ snippet open
 	}
 
 	fclose($1);
+snippet measureTime linux
+	struct timeval t_start, t_end;
+	double elapsedTime;
+
+	// start timer
+	gettimeofday(&t_start, NULL);
+
+	// do something
+	// ...
+
+	// stop timer
+	gettimeofday(&t_end, NULL);
+
+	// compute and print the elapsed time in millisec
+	elapsedTime = (t_end.tv_sec - t_start.tv_sec) * 1000.0;      // sec to ms
+	elapsedTime += (t_end.tv_usec - t_start.tv_usec) / 1000.0;   // us to ms
+	printf("%f ms.\n",elapsedTime);
+
+snippet measureTime windows
+	LARGE_INTEGER frequency;        // ticks per second
+	LARGE_INTEGER t_start, t_end;   // ticks
+	double elapsedTime;
+
+	// get ticks per second
+	QueryPerformanceFrequency(&frequency);
+
+	// start timer
+	QueryPerformanceCounter(&t_start);
+
+	// do something
+	// ...
+
+	// stop timer
+	QueryPerformanceCounter(&t_end);
+
+	// compute and print the elapsed time in millisec
+	elapsedTime = (t_end.QuadPart - t_start.QuadPart) * 1000.0 / frequency.QuadPart;
+	printf("%f ms.\n",elapsedTime);
