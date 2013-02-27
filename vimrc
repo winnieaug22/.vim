@@ -49,7 +49,6 @@ autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
-
 autocmd Filetype c,cpp set foldmethod=syntax
 
 " highlight doxygen syntax
