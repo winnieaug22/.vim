@@ -59,6 +59,18 @@ autocmd Filetype java  set syntax=java.doxygen
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 set dict+=/usr/share/dict/american-english
+set tags+=$HOME/.vim/tags/stl_tags
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 0 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 0 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 0 " autocomplete after ::
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
