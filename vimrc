@@ -29,7 +29,11 @@ endif
 
 " for Powerline
 set laststatus=2
-let g:Powerline_symbols = 'unicode'
+if has("win32")
+    let g:Powerline_symbols = 'compatible'
+else
+    let g:Powerline_symbols = 'unicode'
+endif
 
 " tab mapping
 map td :tabclose<CR>
@@ -58,8 +62,12 @@ autocmd Filetype java  set syntax=java.doxygen
 
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
-set dict+=/usr/share/dict/american-english
-set tags+=$HOME/.vim/tags/stl_tags
+if has("win32")
+    set tags+=$VIM/vimfiles/tags/stl_tags
+else
+    set tags+=$HOME/.vim/tags/stl_tags
+    set dict+=/usr/share/dict/american-english
+endif
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
@@ -70,7 +78,7 @@ let OmniCpp_MayCompleteArrow = 0 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 0 " autocomplete after ::
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
+set completeopt=menuone,menu,longest ",preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
