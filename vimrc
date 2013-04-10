@@ -48,8 +48,6 @@ vmap <bs> x
 " edit hex
 nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
-" automatically open and close the popup menu / preview window
-autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
