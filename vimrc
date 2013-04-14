@@ -62,9 +62,10 @@ autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 if has("win32")
     set tags+=$VIM/vimfiles/tags/stl_tags
+    set dict+=$VIM/vimfiles/dict/words
 else
     set tags+=$HOME/.vim/tags/stl_tags
-    set dict+=/usr/share/dict/american-english
+    set dict+=$HOME/.vim/dict/words
 endif
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
