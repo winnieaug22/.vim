@@ -48,6 +48,7 @@ vmap <bs> x
 " edit hex
 nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
+nmap <F12> :w<CR>:make!<CR>:cw<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
@@ -59,6 +60,8 @@ autocmd Filetype cpp   set syntax=cpp.doxygen
 autocmd Filetype java  set syntax=java.doxygen
 
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+
+autocmd Filetype javascript setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m
 
 if has("win32")
     set tags+=$VIM/vimfiles/tags/stl_tags
