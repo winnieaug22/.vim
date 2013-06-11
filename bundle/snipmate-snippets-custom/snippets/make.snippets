@@ -8,6 +8,7 @@ snippet C
 	CFLAGS  = -g -Wall
 	LIBS    = -lm
 	INCPATH =
+	DIR     = $(shell pwd)
 
 	###############################################################################
 	# source files setting
@@ -15,7 +16,7 @@ snippet C
 	C_SOURCES = $(shell find . -name "*.c")
 	C_OBJS    = $(patsubst %.c,%.o,$(wildcard $(C_SOURCES)))
 	OBJS      = $(C_OBJS)
-	EXEC      = ${1:a.out}
+	EXEC      = $(shell basename $(DIR))
 
 	###############################################################################
 	.PHONY : clean clean_all
@@ -44,6 +45,7 @@ snippet CPP
 	CXXFLAGS = $(CFLAGS) -Weffc++
 	LIBS     = -lm
 	INCPATH  =
+	DIR     = $(shell pwd)
 
 	###############################################################################
 	# source files setting
@@ -53,7 +55,7 @@ snippet CPP
 	C_OBJS      = $(patsubst %.c,%.o,$(wildcard $(C_SOURCES)))
 	CXX_OBJS    = $(patsubst %.cpp,%.o,$(wildcard $(CXX_SOURCES)))
 	OBJS        = $(C_OBJS) $(CXX_OBJS)
-	EXEC        = ${1:a.out}
+	EXEC      = $(shell basename $(DIR))
 
 	###############################################################################
 	.PHONY : clean clean_all
