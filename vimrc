@@ -72,6 +72,11 @@ else
 endif
 set switchbuf+=usetab,newtab
 set cscopequickfix=s-,c-,d-,i-,t-,e-
+if filereadable("cscope.out")
+    cs add cscope.out
+elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+endif
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
