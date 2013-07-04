@@ -70,6 +70,8 @@ else
     set tags+=$HOME/.vim/tags/stl_tags
     set dict+=$HOME/.vim/dict/words
 endif
+set switchbuf+=usetab,newtab
+set cscopequickfix=s-,c-,d-,i-,t-,e-
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
