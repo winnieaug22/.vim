@@ -100,3 +100,6 @@
 [submodule "bundle/SrcExpl"]
 	path = bundle/SrcExpl
 	url = https://github.com/vim-scripts/SrcExpl
+[submodule "bundle/xmledit"]
+	path = bundle/xmledit
+	url = https://github.com/sukima/xmledit.git
