@@ -2,6 +2,7 @@ call pathogen#runtime_append_all_bundles()
 
 au VimResized * :wincmd =
 filetype plugin on
+filetype indent on
 set fileencodings=utf-8,cp950,big5,sjis,euc-jp,gbk,euc-kr,utf-bom,iso-2022-jp,iso8859-1,ucs-bom
 set termencoding=utf-8
 set encoding=utf-8
