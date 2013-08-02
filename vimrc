@@ -18,8 +18,8 @@ set wildmenu
 set t_Co=256
 set visualbell
 set background=dark
+set fileformats=unix,dos
 set fileformat=unix
-set fileformats=unix
 set backspace=2
 colorscheme gentooish
 syntax on
@@ -59,6 +59,7 @@ autocmd Filetype c,cpp set foldmethod=syntax
 autocmd Filetype c     set syntax=c.doxygen
 autocmd Filetype cpp   set syntax=cpp.doxygen
 autocmd Filetype java  set syntax=java.doxygen
+autocmd Filetype java  set foldmethod=syntax
 
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
