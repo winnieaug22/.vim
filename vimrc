@@ -102,3 +102,4 @@ let g:html_indent_style1 = "inc"
 let g:slime_target = "tmux"
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
+let g:DirDiffExcludes = ".git"
