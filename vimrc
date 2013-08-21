@@ -65,6 +65,9 @@ autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 autocmd Filetype javascript setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m
 
+autocmd Filetype perl set foldmarker={,}
+autocmd Filetype perl set foldmethod=marker
+
 if has("win32")
     set tags+=$VIM/vimfiles/tags/stl_tags
     set dict+=$VIM/vimfiles/dict/words
