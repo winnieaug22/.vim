@@ -185,3 +185,7 @@ snippet driver
 
 	clean:
 		make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+snippet gtklib
+	\`pkg-config --libs gtk+-2.0\`
+snippet gtkflag
+	\`pkg-config --cflags gtk+-2.0\`
