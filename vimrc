@@ -1,5 +1,5 @@
 call pathogen#runtime_append_all_bundles()
-
+"sdfasdf
 au VimResized * :wincmd =
 filetype plugin on
 filetype indent on
