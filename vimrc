@@ -21,7 +21,7 @@ set background=dark
 set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
-colorscheme gentooish
+"colorscheme gentooish
 syntax on
 " go to last position
 if has("autocmd")
@@ -53,7 +53,7 @@ nmap <F12> :w<CR>:make!<CR>:cw<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
-autocmd Filetype c,cpp set foldmethod=syntax
+"autocmd Filetype c,cpp set foldmethod=syntax
 
 " highlight doxygen syntax
 autocmd Filetype c     set syntax=c.doxygen
@@ -96,8 +96,8 @@ set completeopt=menuone,menu,longest ",preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:snips_author="Wen-Chi Guo"
-let g:snips_email="campbellmath@gmail.com"
+let g:snips_author="Winnie Chen"
+let g:snips_email="winne.aug22@gmail.com"
 let g:DoxygenToolkit_authorName=g:snips_author.' <'.g:snips_email.'>'
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
@@ -106,3 +106,14 @@ let g:slime_target = "tmux"
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" winnie setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ignore case = /\cSEARCH or \Csearch
+set ignorecase
+"autocmd Filetype c,cpp set foldmethod=syntax
+"autocmd FileType c,cpp nested :TagbarOpen
+map tt :TagbarToggle<cr>
+" just one line
+set nowrap
+colorscheme desert256
