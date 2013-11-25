@@ -1,5 +1,4 @@
 call pathogen#runtime_append_all_bundles()
-"sdfasdf
 au VimResized * :wincmd =
 filetype plugin on
 filetype indent on
@@ -112,8 +111,25 @@ let g:DirDiffExcludes = ".git"
 " Ignore case = /\cSEARCH or \Csearch
 set ignorecase
 "autocmd Filetype c,cpp set foldmethod=syntax
+"marker: zf% ; zd ;; zo/zc zr/zm
+autocmd Filetype c,cpp set foldmethod=marker
 "autocmd FileType c,cpp nested :TagbarOpen
 map tt :TagbarToggle<cr>
-" just one line
+map ss :SrcExpl<cr><cr>
+map cc :set cursorcolumn!<Bar>set cursorline!<CR>
+
+"map ss :SrcExplToggle
+" no new line(i.e. just one line)
 set nowrap
 colorscheme desert256
+set mouse=a
+
+"augroup CursorLine
+"      au!
+"      au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"      au WinLeave * setlocal nocursorline
+"augroup END
+hi Pmenu          ctermfg=252 ctermbg=235
+hi PmenuSel       cterm=bold ctermfg=177 ctermbg=16
+hi PmenuSbar      ctermfg=252 ctermbg=16
+hi PmenuThumb     ctermfg=252 ctermbg=236
