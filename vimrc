@@ -123,7 +123,7 @@ map cc :set cursorcolumn!<Bar>set cursorline!<CR>
 set nowrap
 colorscheme desert256
 set mouse=a
-
+set nocompatible
 "augroup CursorLine
 "      au!
 "      au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
