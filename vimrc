@@ -1,5 +1,4 @@
 call pathogen#runtime_append_all_bundles()
-"sdfasdf
 au VimResized * :wincmd =
 filetype plugin on
 filetype indent on
@@ -12,6 +11,7 @@ set tabstop=4
 set nocompatible
 set expandtab " Use spaces instead of tabs
 set nolist
+set listchars=eol:¶,tab:┊-,extends:»,precedes:«,trail:•
 set hlsearch
 set number
 set wildmenu
