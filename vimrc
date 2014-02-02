@@ -21,6 +21,7 @@ set background=dark
 set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
+set nowrap
 colorscheme gentooish
 syntax on
 " go to last position
