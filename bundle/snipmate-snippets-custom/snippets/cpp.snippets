@@ -39,3 +39,20 @@ snippet catch
 	catch ( ${1:exception} ${2:e} ) {
 		${3}
 	}
+snippet winapp
+	class WinApp : public CWinApp {
+	    public:
+	        BOOL InitInstance()
+	        {
+	            CFrameWnd * frame = new CFrameWnd();
+
+	            this->m_pMainWnd = frame;
+
+	            frame->Create(NULL, L"Hello MFC");
+	            frame->ShowWindow(SW_SHOW);
+
+	            return TRUE;
+	        }
+	}; /* end of class WinApp */
+
+	WinApp winapp;
