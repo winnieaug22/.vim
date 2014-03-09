@@ -108,6 +108,25 @@ let g:DirDiffExcludes = ".git"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " winnie setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+cabbrev ftag cs find t
+cabbrev fcall cs find c
+" copen - cclose (toggle)
+nnoremap ss :call QuickfixToggle()<cr>
+
+let g:quickfix_is_open = 0
+
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+
 " Ignore case = /\cSEARCH or \Csearch
 set ignorecase
 "autocmd Filetype c,cpp set foldmethod=syntax
@@ -115,7 +134,7 @@ set ignorecase
 autocmd Filetype c,cpp set foldmethod=marker
 "autocmd FileType c,cpp nested :TagbarOpen
 map tt :TagbarToggle<cr>
-map ss :SrcExpl<cr><cr>
+"map ss :SrcExpl<cr><cr> "ss is copen
 map cc :set cursorcolumn!<Bar>set cursorline!<CR>
 
 "map ss :SrcExplToggle
