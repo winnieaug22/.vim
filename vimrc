@@ -110,6 +110,7 @@ let g:DirDiffExcludes = ".git"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cabbrev ftag cs find t
 cabbrev fcall cs find c
+cabbrev fall vimgrep 
 " copen - cclose (toggle)
 nnoremap ss :call QuickfixToggle()<cr>
 
