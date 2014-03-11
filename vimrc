@@ -11,6 +11,7 @@ set tabstop=4
 set nocompatible
 set expandtab " Use spaces instead of tabs
 set nolist
+set listchars=eol:¶,tab:┊-,extends:»,precedes:«,trail:•
 set hlsearch
 set number
 set wildmenu
@@ -20,6 +21,7 @@ set background=dark
 set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
+set nowrap
 "colorscheme gentooish
 syntax on
 " go to last position
