@@ -142,7 +142,8 @@ map cc :set cursorcolumn!<Bar>set cursorline!<CR>
 " no new line(i.e. just one line)
 set nowrap
 colorscheme desert256
-set mouse=a
+"set mouse=a
+set mouse=
 set nocompatible
 "augroup CursorLine
 "      au!
