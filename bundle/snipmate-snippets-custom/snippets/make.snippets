@@ -76,6 +76,22 @@ snippet CPP
 	clean_all: clean
 		@rm -vfr $(EXEC)
 	###############################################################################
+snippet MSVC
+	MSBUILD=msbuild
+	SLN_FILE=
+	CONFIGURATION=Debug # Release
+	FLAGS=/nologo /v:q /property:GenerateFullPaths=true
+
+	all: build
+
+	build:
+		$(MSBUILD) $(SLN_FILE) /t:Build /p:Configuration=$(CONFIGURATION) $(FLAGS)
+
+	rebuild:
+		$(MSBUILD) $(SLN_FILE) /t:Rebuild /p:Configuration=$(CONFIGURATION) $(FLAGS)
+
+	clean:
+		$(MSBUILD) $(SLN_FILE) /t:Clean /p:Configuration=$(CONFIGURATION) $(FLAGS)
 snippet CLIB
 	###############################################################################
 	# compiler setting
