@@ -94,6 +94,9 @@ let OmniCpp_MayCompleteScope = 0 " autocomplete after ::
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest ",preview
+if has("win32") || has("win64")
+    set directory=$TMP
+end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
