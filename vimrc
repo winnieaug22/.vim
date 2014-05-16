@@ -97,6 +97,7 @@ set completeopt=menuone,menu,longest ",preview
 if has("win32") || has("win64")
     set directory=$TMP
 end
+set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
