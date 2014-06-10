@@ -205,3 +205,67 @@ snippet gtklib
 	\`pkg-config --libs gtk+-2.0\`
 snippet gtkflag
 	\`pkg-config --cflags gtk+-2.0\`
+snippet Android
+	###############################################################################
+	# Run the following command before using this makefile
+	# 1. get target infomatioin
+	# 		$ android list target
+	# 2. update project
+	# 		$ android update project -t target -p .
+	###############################################################################
+
+	PACKAGE=${1:com.example.apkname}
+	ACTIVITY=$(PACKAGE).${2:MainActivity}
+
+	all: run_debug
+
+	###############################################################################
+	# Removes output files created by other targets.
+	# This calls the same target on all dependent projects.
+	# Use 'ant nodeps clean' to only clean the local project
+
+	clean:
+		ant clean
+
+	###############################################################################
+	# Builds the application and signs it with a debug key.
+	# The 'nodeps' target can be used to only build the
+	# current project and ignore the libraries using:
+	# 'ant nodeps debug'
+	debug:
+		ant debug
+
+	###############################################################################
+	# Builds the application. The generated apk file must be
+	# signed before it is published.
+	# The 'nodeps' target can be used to only build the
+	# current project and ignore the libraries using:
+	# 'ant nodeps release'
+	release:
+		ant release
+
+	###############################################################################
+	# Installs (only) the debug package.
+
+	installd: debug
+		ant installd
+
+	###############################################################################
+	# Installs (only) the release package.
+	installr: release
+		ant installr
+
+	###############################################################################
+	# Uninstalls the application from a running emulator or
+	# device. Also uninstall tested package if applicable
+	# unless 'nodeps' is used as well.
+	uninstall:
+		ant uninstall
+
+	###############################################################################
+	run_debug: installd
+		adb shell am start -n $(PACKAGE)/$(ACTIVITY)
+
+	###############################################################################
+	run_release: installr
+		adb shell am start -n $(PACKAGE)/$(ACTIVITY)
