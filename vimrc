@@ -96,6 +96,10 @@ let OmniCpp_MayCompleteScope = 0 " autocomplete after ::
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest ",preview
+if has("win32") || has("win64")
+    set directory=$TMP
+end
+set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,6 +113,9 @@ let g:slime_target = "tmux"
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
+
+" for Android develop
+let $CLASSPATH="/opt/Android/sdk/adt-bundle/sdk/platforms/android-19/android.jar".':'.$CLASSPATH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " winnie setting - function
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,3 +191,5 @@ hi PmenuThumb     ctermfg=252 ctermbg=236
 
 " highlight WinnieTypeDef guibg=green 
 " match WinnieTypeDef / UINT8 /
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
