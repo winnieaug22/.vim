@@ -24,6 +24,7 @@ set backspace=2
 set nowrap
 "colorscheme gentooish
 syntax on
+
 " go to last position
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -55,6 +56,7 @@ nmap <F12> :w<CR>:make!<CR>:cw<CR>
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 "autocmd Filetype c,cpp set foldmethod=syntax
+autocmd Filetype c,cpp set foldmethod=marker
 
 " highlight doxygen syntax
 autocmd Filetype c     set syntax=c.doxygen
@@ -108,21 +110,16 @@ let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" winnie setting
+" winnie setting - function
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cabbrev ftag cs find t
-cabbrev fcall cs find c
-cabbrev fall vimgrep 
 " copen - cclose (toggle)
-nnoremap ss :call QuickfixToggle()<cr>
-
 let g:quickfix_is_open = 0
 
 function! QuickfixToggle()
     if g:quickfix_is_open
         cclose
         let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
+        silent execute g:quickfix_return_to_window . "wincmd w"
     else
         let g:quickfix_return_to_window = winnr()
         copen
@@ -130,22 +127,49 @@ function! QuickfixToggle()
     endif
 endfunction
 
+" NERDTree (toggle)
+let g:Nerdtree_is_open = 0
+
+function! NerdtreeToggle()
+    if g:Nerdtree_is_open
+        execute ":NERDTree"
+        let g:Nerdtree_is_open = 0
+    else
+        execute "normal q"
+        let g:Nerdtree_is_open = 1
+    endif
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" winnie setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+cabbrev ftag cs find t
+cabbrev fcall cs find c
+cabbrev fall vimgrep 
+
 " Ignore case = /\cSEARCH or \Csearch
-set ignorecase
-"autocmd Filetype c,cpp set foldmethod=syntax
+" set ignorecase
+
+" autocmd Filetype c,cpp set foldmethod=syntax
 "marker: zf% ; zd ;; zo/zc zr/zm
 autocmd Filetype c,cpp set foldmethod=marker
 "autocmd FileType c,cpp nested :TagbarOpen
-map tt :TagbarToggle<cr>
-"map ss :SrcExpl<cr><cr> "ss is copen
-map cc :set cursorcolumn!<Bar>set cursorline!<CR>
 
+map <leader>t :TagbarToggle<cr>
+" q :mean to close Nerd tree
+map <leader>n :call NerdtreeToggle()<cr>
+"map ss :SrcExpl<cr><cr> "ss is copen
 "map ss :SrcExplToggle
+map <leader>c :set cursorcolumn!<Bar>set cursorline!<CR>
+" copen - cclose (toggle)
+nnoremap <leader>s :call QuickfixToggle()<cr>
+nnoremap <leader>p :call IfdeflevelToggle()<cr>
+
 " no new line(i.e. just one line)
 set nowrap
 colorscheme desert256
-"set mouse=a
-set mouse=
+set mouse=a
+" set mouse=
 set nocompatible
 "augroup CursorLine
 "      au!
@@ -156,3 +180,7 @@ hi Pmenu          ctermfg=252 ctermbg=235
 hi PmenuSel       cterm=bold ctermfg=177 ctermbg=16
 hi PmenuSbar      ctermfg=252 ctermbg=16
 hi PmenuThumb     ctermfg=252 ctermbg=236
+" ifdef Fold
+
+" highlight WinnieTypeDef guibg=green 
+" match WinnieTypeDef / UINT8 /
