@@ -22,7 +22,7 @@ set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
 set nowrap
-colorscheme gentooish
+colorscheme molokai
 syntax on
 " go to last position
 if has("autocmd")
