@@ -113,4 +113,4 @@ let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
 
 " for Android develop
-let $CLASSPATH="/opt/Android/sdk/adt-bundle/sdk/platforms/android-19/android.jar".':'.$CLASSPATH
+let $CLASSPATH="/Users/campbell/opt/program/Android/sdk/platforms/android-19/android.jar".':'.$CLASSPATH
