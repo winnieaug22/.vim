@@ -2,16 +2,6 @@ snippet co
 	/** ${1} */
 snippet sl
 	/*===========================================================================*/
-# if
-snippet if
-	if (${1:/* condition */}) {
-		${2:/* code */}
-	}${3}
-# else
-snippet else
-	else {
-		${1}
-	}${3}
 # ternary
 snippet t
 	${1:/* condition */} ? ${2:a} : ${3:b}
@@ -29,11 +19,6 @@ snippet case
 	case ${1:/* variable case */}:
 		${2}
 		${3:break;}${4}
-## for
-snippet for
-	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
-		${4:/* code */}
-	}
 # while
 snippet while
 	while (${1:/* condition */}) {
@@ -44,3 +29,45 @@ snippet do
 	do {
 		${2:/* code */}
 	} while (${1:/* condition */});${3}
+###############################################################################
+# Android
+###############################################################################
+snippet Android.Activity
+	public class ${1:ExampleActivity} extends Activity {
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+		    super.onCreate(savedInstanceState);
+		    // The activity is being created.
+		}
+		@Override
+		protected void onStart() {
+		    super.onStart();
+		    // The activity is about to become visible.
+		}
+		@Override
+		protected void onRestart() {
+		    super.onRestart();  // Always call the superclass method first
+		    // Activity being restarted from stopped state
+		}
+		@Override
+		protected void onResume() {
+		    super.onResume();
+		    // The activity has become visible (it is now "resumed").
+		}
+		@Override
+		protected void onPause() {
+		    super.onPause();
+		    // Another activity is taking focus (this activity is about to be "paused").
+		}
+		@Override
+		protected void onStop() {
+		    super.onStop();
+		    // The activity is no longer visible (it is now "stopped")
+		}
+		@Override
+		protected void onDestroy() {
+		    super.onDestroy();
+		    // The activity is about to be destroyed.
+		}
+	}
+###############################################################################

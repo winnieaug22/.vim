@@ -112,3 +112,6 @@
 [submodule "bundle/gitignore"]
 	path = bundle/gitignore
 	url = https://github.com/rdolgushin/gitignore.vim
+[submodule "bundle/TaskList"]
+	path = bundle/TaskList
+	url = https://github.com/vim-scripts/TaskList.vim

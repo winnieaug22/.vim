@@ -56,3 +56,23 @@ snippet winapp
 	}; /* end of class WinApp */
 
 	WinApp winapp;
+snippet singleton
+	template <class T>
+	class Singleton
+	{
+	    public:
+	        static T * getInstance() {
+	            if(0 == m_pInstance) m_pInstance = new T;
+	            assert(m_pInstance != 0);
+	            return m_pInstance;
+	        }
+	    protected:
+	        Singleton();
+	        ~Singleton();
+	    private:
+	        Singleton(Singleton const&);
+	        Singleton& operator=(Singleton const&);
+	        static T * m_pInstance;
+	};
+
+	template <class T> T* Singleton<T>::m_pInstance =f 0;

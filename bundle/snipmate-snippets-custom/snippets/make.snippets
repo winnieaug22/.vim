@@ -269,3 +269,12 @@ snippet Android
 	###############################################################################
 	run_release: installr
 		adb shell am start -n $(PACKAGE)/$(ACTIVITY)
+snippet Android.mk
+	LOCAL_PATH := $(call my-dir)
+
+	include $(CLEAR_VARS)
+
+	LOCAL_MODULE    := ${1:MODULE}
+	LOCAL_SRC_FILES := ${2:SRC FILE}
+
+	include $(BUILD_SHARED_LIBRARY)
