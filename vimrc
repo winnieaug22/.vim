@@ -23,6 +23,7 @@ set fileformat=unix
 set backspace=2
 set nowrap
 colorscheme molokai
+"colorscheme gentooish
 syntax on
 
 " go to last position

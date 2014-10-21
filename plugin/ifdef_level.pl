@@ -43,7 +43,8 @@ sub print2Darray{
         # $a_2d_array[$i][0] : line number
         # $a_2d_array[$i][1] : brackets
         # $a_2d_array[$i][2] : Name
-        printCentesimal( $a_2d_array[$i][0], \$last_quotient, $OUT_FILE_PTR); #line number
+
+        # printCentesimal( $a_2d_array[$i][0], \$last_quotient, $OUT_FILE_PTR); #line number
         printf $OUT_FILE_PTR "%s%3d %s\n", $a_2d_array[$i][1], $a_2d_array[$i][0], $a_2d_array[$i][2];
     }
 }
