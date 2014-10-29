@@ -163,7 +163,7 @@ cabbrev fall vimgrep
 autocmd Filetype c,cpp set foldmethod=marker
 "autocmd FileType c,cpp nested :TagbarOpen
 
-map <leader>t :TagbarToggle<cr>
+map <leader>g :TagbarToggle<cr>
 " q :mean to close Nerd tree
 map <leader>n :call NerdtreeToggle()<cr>
 "map ss :SrcExpl<cr><cr> "ss is copen
