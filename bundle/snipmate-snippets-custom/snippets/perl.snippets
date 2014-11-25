@@ -41,3 +41,14 @@ snippet sqlite
 	}
 
 	$dbh->disconnect();
+snippet ValidEmail
+	sub ValidEmail
+	{
+		return 0 if $_[0] =~ /(?:[\.\-\_]{2,})|(?:@[\.\-\_])|(?:[\.\-\_]@)|(?:\A\.)/;
+		return 1 if $_[0] =~ /^[\w\.\-\_]+\@\[?[\w\.\-\_]+\.(?:[\w\.\-\_]{2,}|[0-9])\]?$/;
+		return 0;
+	}
+snippet sort_by_alpha
+	@${1:array} = sort { $${2:a} cmp $${3:b} } @$1;
+snippet sort_by_number
+	@${1:array} = sort { $${2:a} <=> $${3:b} } @$1;
