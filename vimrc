@@ -22,6 +22,8 @@ set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
 set nowrap
+set colorcolumn=80
+set cursorline
 colorscheme molokai
 syntax on
 " go to last position
