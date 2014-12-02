@@ -85,6 +85,16 @@ if filereadable("cscope.out")
 elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
 endif
+
+map csc :cs find c <C-R>=expand("<cword>")<CR>
+map csd :cs find d <C-R>=expand("<cword>")<CR>
+map cse :cs find e <C-R>=expand("<cword>")<CR>
+map csf :cs find f <C-R>=expand("<cword>")<CR>
+map csg :cs find g <C-R>=expand("<cword>")<CR>
+map csi :cs find i <C-R>=expand("<cword>")<CR>
+map css :cs find s <C-R>=expand("<cword>")<CR>
+map cst :cs find t <C-R>=expand("<cword>")<CR>
+
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
