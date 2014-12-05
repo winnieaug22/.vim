@@ -74,6 +74,16 @@ snippet open
 	}
 
 	fclose($1);
+snippet filesize
+	long getFileSize( FILE * file_name)
+	{
+		long pos = ftell(file_name);
+		long len = 0;
+		fseek (file_name, 0L, SEEK_END);
+		len = ftell(file_name);
+		fseek(file_name, pos, SEEK_SET);
+		return len;
+	}
 snippet measureTime linux
 	struct timeval t_start, t_end;
 	double elapsedTime;
