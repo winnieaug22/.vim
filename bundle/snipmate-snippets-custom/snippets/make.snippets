@@ -59,7 +59,7 @@ snippet CPP
 	CXXFLAGS = $(CFLAGS) -Weffc++
 	LIBS     = -lm
 	INCPATH  =
-	DIR     = $(shell pwd)
+	DIR      = $(shell pwd)
 
 	###############################################################################
 	# source files setting
@@ -69,7 +69,7 @@ snippet CPP
 	C_OBJS      = $(patsubst %.c,%.o,$(wildcard $(C_SOURCES)))
 	CXX_OBJS    = $(patsubst %.cpp,%.o,$(wildcard $(CXX_SOURCES)))
 	OBJS        = $(C_OBJS) $(CXX_OBJS)
-	EXEC      = $(shell basename $(DIR))
+	EXEC        = $(shell basename $(DIR))
 
 	###############################################################################
 	.PHONY : clean clean_all
