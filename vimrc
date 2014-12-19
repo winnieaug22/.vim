@@ -123,6 +123,7 @@ let g:slime_target = "tmux"
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
+let g:gitgutter_max_signs=999999
 
 " for Android develop
 let $CLASSPATH="/Users/campbell/opt/program/Android/sdk/platforms/android-19/android.jar".':'.$CLASSPATH
