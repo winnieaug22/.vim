@@ -113,34 +113,148 @@ snippet measureTime windows
 	elapsedTime = (t_end.QuadPart - t_start.QuadPart) * 1000.0 / frequency.QuadPart;
 	printf("%f ms.\n",elapsedTime);
 # ==== winnie setting ===
-# function mux (for likewise purpose)
+# function mux (for C++ class)
 snippet fmux
-	//=======
-	typedef int SrcType;
+	typedef struct {
+		int a;
+		int b;
+	} DataNoun;
 
 	typedef struct {
-		SrcType parameter_a;
-		SrcType parameter_b;
-	} ${1:DataName};
+		void (*$2) (int a, int b);
+		void (*$3) (int a, int b);
+	} $1;
+	
+	void _imp_$2(int a, int b)
+	{
+		//return a+b;
+	}
+	void _imp_$3(int a, int b)
+	{
+		//return a-b;
+	}
 
-	$1 Data
-	typedef struct {          
-		void (*${2:option_1}) (SrcType parameter);
-		void (*${3:option_2}) (SrcType parameter);
-	} $1Mux; 
-	extern $1 $6_mux;
-	//=============
-	void _imp_$2(SrcType parameter) 
-	{                                                                          
-		${4://implement}                              
-	}                                                                          
-	void _imp_$3(SrcType parameter) 
-	{                                                                          
-		${5://implement}                              
-	}                                                                          
+	${1:CalculateNounMux} calculate_noun_mux = {
+	    .${2:calculate_n1} = _imp_$2,
+	    .${3:calculate_n2} = _imp_$3,
+	};
 
-	${1:OptionDataNameMux} ${6:function_obj_name}_mux = { 
-	    .$2 = _imp_$2,                  
-	    .$3 = _imp_$3,                    
-	};                                                  
+	int main()
+	{
+		DataNoun data_noun;
+		data_noun.a = 1;
+		data_noun.b = 2;
+
+		int sum = calculate_noun_mux.$2(data_noun.a, data_noun.b);
+		int sub = calculate_noun_mux.$3(data_noun.a, data_noun.b);
+		
+	}
+# linklist
+snippet linklist
+	/*===========================================================================*/
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <string.h>
+	/*===========================================================================*/
+	typedef struct _Node {
+	    int x;
+	    struct _Node *prev;
+	    struct _Node *next;
+	} Node;
+	/*===========================================================================*/
+	Node * getNode();
+	Node * freeNode(Node * node);
+	Node * freeNodeList(Node * head);
+	void travNode(Node *node);
+	/*===========================================================================*/
+	/*===========================================================================*/
+	Node * getNode()
+	{
+	    Node *node = (Node *)malloc(sizeof(Node));
+	
+	    node->x     = 0;
+	    node->prev = NULL;
+	    node->next  = NULL;
+	
+	    return node;
+	}
+	/*===========================================================================*/
+	Node * freeNode(Node * node)
+	{
+	    if (node) {
+	        free(node);
+	    }
+	    node = NULL;
+	
+	    return NULL;
+	}
+	/*===========================================================================*/
+	Node * freeNodeList(Node * head)
+	{
+	    Node *current = NULL;
+	    while (head!=NULL) {
+	        current = head;
+	        head=head->next;
+	
+	        current = freeNode(current);
+	    }
+	
+	    return head;
+	}
+	/*===========================================================================*/
+	void travNode(Node *node)
+	{
+	    int i = 0;
+	    printf("list->");
+	    while (node!=NULL) {
+	        printf("%d->", node->x);
+	        node=node->next;
+	        i++;
+	    }
+	    printf("(num%d)\n",i);
+	}
+	static Node * enque(Node * list, int one)
+	{
+	    Node * new = getNode();
+	
+	    new->x=one;
+	    new->prev=NULL;
+	    new->next=list;
+	
+	    list=new;
+	    return list;
+	
+	}
+	static Node * deque(Node * list)
+	{
+	    Node * one = NULL;
+	    if(list!=NULL) {
+	        one = list;
+	        printf("%d\n", one->x);
+	
+	        list=one->next;
+	        freeNode(one);
+	    }
+	    return list;
+	}
+	/*===========================================================================*/
+	int main(int argc, const char *argv[])
+	{
+	    Node * list = NULL;
+	    
+	    list = enque(list, 1);
+	    list = enque(list, 2);
+	    list = enque(list, 3);
+	    list = enque(list, 4);
+	    list = enque(list, 5);
+	    travNode(list);
+	    list = deque(list);
+	    list = deque(list);
+	    list = deque(list);
+	    travNode(list);
+	
+	    return 0;
+	}
+	/*===========================================================================*/
+
 

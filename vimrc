@@ -56,8 +56,8 @@ nmap <F12> :w<CR>:make!<CR>:cw<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
-"autocmd Filetype c,cpp set foldmethod=syntax
-autocmd Filetype c,cpp set foldmethod=marker
+autocmd Filetype c,cpp set foldmethod=syntax
+" autocmd Filetype c,cpp set foldmethod=marker
 
 " highlight doxygen syntax
 autocmd Filetype c     set syntax=c.doxygen
