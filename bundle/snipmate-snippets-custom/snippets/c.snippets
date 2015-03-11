@@ -10,10 +10,10 @@ snippet co
 	/** ${1} */
 snippet sl
 	/*===========================================================================*/
-snippet dinfo
+snipp et dinfo
 	printf("%s @ %s : %d \n", __FUNCTION__,  __FILE__, __LINE__);
 # linux driver
-snippet driver
+snipp et driver
 	#include <linux/init.h>
 	#include <linux/module.h>
 
@@ -53,7 +53,7 @@ snippet ff
 	${2}
 
 	#endif /* end of $1 */
-snippet cpp
+snipp et cpp
 	#ifdef __cplusplus
 	extern "C" {
 	#endif /* endif __cpluscplus */
@@ -73,8 +73,8 @@ snippet open
 		exit(-1);
 	}
 
-	fclose($1);
-snippet measureTime linux
+	fclose($1); 
+snip pet measureTime linux
 	struct timeval t_start, t_end;
 	double elapsedTime;
 
@@ -112,3 +112,35 @@ snippet measureTime windows
 	// compute and print the elapsed time in millisec
 	elapsedTime = (t_end.QuadPart - t_start.QuadPart) * 1000.0 / frequency.QuadPart;
 	printf("%f ms.\n",elapsedTime);
+# ==== winnie setting ===
+# function mux (for likewise purpose)
+snippet fmux
+	//=======
+	typedef int SrcType;
+
+	typedef struct {
+		SrcType parameter_a;
+		SrcType parameter_b;
+	} ${1:DataName};
+
+	$1 Data
+	typedef struct {          
+		void (*${2:option_1}) (SrcType parameter);
+		void (*${3:option_2}) (SrcType parameter);
+	} $1Mux; 
+	extern $1 $6_mux;
+	//=============
+	void _imp_$2(SrcType parameter) 
+	{                                                                          
+		${4://implement}                              
+	}                                                                          
+	void _imp_$3(SrcType parameter) 
+	{                                                                          
+		${5://implement}                              
+	}                                                                          
+
+	${1:OptionDataNameMux} ${6:function_obj_name}_mux = { 
+	    .$2 = _imp_$2,                  
+	    .$3 = _imp_$3,                    
+	};                                                  
+
