@@ -21,6 +21,8 @@ set background=dark
 set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
+set novb
+set t_ut=
 set nowrap
 set colorcolumn=80
 set cursorline
