@@ -121,3 +121,6 @@
 [submodule "bundle/ag.vim"]
 	path = bundle/ag.vim
 	url = https://github.com/rking/ag.vim
+[submodule "bundle/AnsiEsc.vim"]
+	path = bundle/AnsiEsc.vim
+	url = https://github.com/vim-scripts/AnsiEsc.vim
