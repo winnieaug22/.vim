@@ -13,6 +13,14 @@ if has("gui_macvim")
 elseif has("gui_gtk2")
     set guifont=DejaVu\ Sans\ Mono\ 12
 elseif has("gui_win32")
-    " set guifont=DejaVu\ Sans\ Mono:h12
-    set guifont=Consolas:h12
+    set guifont=DejaVu\ Sans\ Mono:h12
+    " set guifont=Consolas:h12:cANSI
+    let $LANG="zh_TW.UTF-8"
+    set langmenu=en_us.utf-8
+    set encoding=utf8
+    language messages en_us.utf-8
+    "reload menu with UTF-8 encoding
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+
 endif

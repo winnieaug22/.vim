@@ -21,11 +21,14 @@ set background=dark
 set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
+set novb
+set t_ut=
 set nowrap
+set colorcolumn=80
+set cursorline
 colorscheme molokai
 "colorscheme gentooish
 syntax on
-
 " go to last position
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -86,6 +89,16 @@ if filereadable("cscope.out")
 elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
 endif
+
+map csc :cs find c <C-R>=expand("<cword>")<CR>
+map csd :cs find d <C-R>=expand("<cword>")<CR>
+map cse :cs find e <C-R>=expand("<cword>")<CR>
+map csf :cs find f <C-R>=expand("<cword>")<CR>
+map csg :cs find g <C-R>=expand("<cword>")<CR>
+map csi :cs find i <C-R>=expand("<cword>")<CR>
+map css :cs find s <C-R>=expand("<cword>")<CR>
+map cst :cs find t <C-R>=expand("<cword>")<CR>
+
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
@@ -114,6 +127,7 @@ let g:slime_target = "tmux"
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
+let g:gitgutter_max_signs=999999
 
 " for Android develop
 let $CLASSPATH="/opt/Android/sdk/adt-bundle/sdk/platforms/android-19/android.jar".':'.$CLASSPATH
@@ -158,9 +172,7 @@ cabbrev fall vimgrep
 " Ignore case = /\cSEARCH or \Csearch
 " set ignorecase
 
-" autocmd Filetype c,cpp set foldmethod=syntax
 "marker: zf% ; zd ;; zo/zc zr/zm
-autocmd Filetype c,cpp set foldmethod=marker
 "autocmd FileType c,cpp nested :TagbarOpen
 
 map <leader>g :TagbarToggle<cr>
@@ -192,5 +204,8 @@ hi PmenuThumb     ctermfg=252 ctermbg=236
 
 " highlight WinnieTypeDef guibg=green 
 " match WinnieTypeDef / UINT8 /
+
+" indent when virtual mode
+vmap <F10> !indent -linux --tab-size4 --no-tabs -ppi 1<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

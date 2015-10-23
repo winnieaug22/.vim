@@ -1,5 +1,16 @@
 snippet sl
 	###############################################################################
+snippet checkos
+	###############################################################################
+	# check OS
+	###############################################################################
+	ifdef SystemRoot
+		OS = Windows
+	else ifeq ($(shell uname -s),Darwin)
+		OS = MacOSX
+	else
+		OS = Linux
+	endif
 snippet C
 	###############################################################################
 	# compiler setting
@@ -35,6 +46,9 @@ snippet C
 	clean_all: clean
 		@rm -vfr $(EXEC)
 	###############################################################################
+	CTAGS:
+		ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+	###############################################################################
 snippet CPP
 	###############################################################################
 	# compiler setting
@@ -45,7 +59,7 @@ snippet CPP
 	CXXFLAGS = $(CFLAGS) -Weffc++
 	LIBS     = -lm
 	INCPATH  =
-	DIR     = $(shell pwd)
+	DIR      = $(shell pwd)
 
 	###############################################################################
 	# source files setting
@@ -55,7 +69,7 @@ snippet CPP
 	C_OBJS      = $(patsubst %.c,%.o,$(wildcard $(C_SOURCES)))
 	CXX_OBJS    = $(patsubst %.cpp,%.o,$(wildcard $(CXX_SOURCES)))
 	OBJS        = $(C_OBJS) $(CXX_OBJS)
-	EXEC      = $(shell basename $(DIR))
+	EXEC        = $(shell basename $(DIR))
 
 	###############################################################################
 	.PHONY : clean clean_all
@@ -75,6 +89,9 @@ snippet CPP
 		@rm -vfr $(OBJS)
 	clean_all: clean
 		@rm -vfr $(EXEC)
+	###############################################################################
+	CTAGS:
+		ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
 	###############################################################################
 snippet MSVC
 	MSBUILD=msbuild
