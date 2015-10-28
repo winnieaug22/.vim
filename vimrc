@@ -25,7 +25,10 @@ set novb
 set t_ut=
 set nowrap
 set colorcolumn=80
+set incsearch
 set cursorline
+set showmatch
+set matchtime=5
 colorscheme molokai
 syntax on
 " go to last position
@@ -112,6 +115,7 @@ if has("win32") || has("win64")
     set directory=$TMP
 end
 set lazyredraw
+set clipboard=exclude:.*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
