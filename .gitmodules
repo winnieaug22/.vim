@@ -103,9 +103,6 @@
 [submodule "bundle/vim-android"]
 	path = bundle/vim-android
 	url = https://github.com/mgarriott/vim-android
-[submodule "bundle/EasyGrep"]
-	path = bundle/EasyGrep
-	url = http://github.com/vim-scripts/EasyGrep
 [submodule "bundle/DirDiff"]
 	path = bundle/DirDiff
 	url = https://github.com/vim-scripts/DirDiff.vim

@@ -16,19 +16,21 @@ set hlsearch
 set number
 set wildmenu
 set t_Co=256
-set visualbell
+set noeb
+set vb
+set t_vb=
+set t_ut=
 set background=dark
 set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
-set novb
-set t_ut=
 set nowrap
 set colorcolumn=80
 set incsearch
-set cursorline
+" set cursorline
 set showmatch
 set matchtime=5
+" set diffopt+=iwhite
 colorscheme molokai
 syntax on
 " go to last position
@@ -68,11 +70,8 @@ autocmd Filetype c     set syntax=c.doxygen
 autocmd Filetype cpp   set syntax=cpp.doxygen
 autocmd Filetype java  set syntax=java.doxygen
 autocmd Filetype java  set foldmethod=syntax
-
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-
 autocmd Filetype javascript setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m
-
 autocmd Filetype perl set foldmarker={,}
 autocmd Filetype perl set foldmethod=marker
 
@@ -130,6 +129,8 @@ let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
 let g:gitgutter_max_signs=999999
+let hostname = hostname()
+if hostname == "vgss6"
+    let g:tagbar_ctags_bin="$HOME/opt/bin/ctags"
+endif
 
-" for Android develop
-let $CLASSPATH="/Users/campbell/opt/program/Android/sdk/platforms/android-19/android.jar".':'.$CLASSPATH
