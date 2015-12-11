@@ -27,6 +27,7 @@ set backspace=2
 set nowrap
 set colorcolumn=80
 set incsearch
+set ttyfast
 " set cursorline
 set showmatch
 set matchtime=5
@@ -56,6 +57,10 @@ map tn :tabedit
 nmap ,dw :%s/\s\+$//g<CR>
 " make <Backspace> act as <Delete> in Visual mode
 vmap <bs> x
+nmap <silent> <F3> :NERDTreeToggle<CR>
+" Tagbar
+nmap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
 " edit hex
 nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
@@ -133,4 +138,3 @@ let hostname = hostname()
 if hostname == "vgss6"
     let g:tagbar_ctags_bin="$HOME/opt/bin/ctags"
 endif
-
