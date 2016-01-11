@@ -18,8 +18,12 @@ set wildmenu
 set t_Co=256
 set noeb
 set vb
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
 set t_vb=
 set t_ut=
+set tm=500
 set background=dark
 set fileformats=unix,dos
 set fileformat=unix
@@ -68,6 +72,7 @@ nmap <F12> :w<CR>:make!<CR>:cw<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
+set nofoldenable
 autocmd Filetype c,cpp set foldmethod=syntax
 
 " highlight doxygen syntax
@@ -133,8 +138,9 @@ let g:slime_target = "tmux"
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
-let g:gitgutter_max_signs=999999
+let g:yankring_history_dir='$HOME/.vim'
 let hostname = hostname()
 if hostname == "vgss6"
+    set shell=/bin/sh
     let g:tagbar_ctags_bin="$HOME/opt/bin/ctags"
 endif
