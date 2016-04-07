@@ -140,7 +140,8 @@ let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
 let g:yankring_history_dir='$HOME/.vim'
 let hostname = hostname()
-if hostname == "vgss6"
+if  hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7"
     set shell=/bin/sh
     let g:tagbar_ctags_bin="$HOME/opt/bin/ctags"
+    set mouse=a
 endif
