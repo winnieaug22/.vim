@@ -145,3 +145,6 @@
 [submodule "bundle/vim-man"]
 	path = bundle/vim-man
 	url = https://github.com/vim-utils/vim-man
+[submodule "bundle/indentLine"]
+	path = bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine
