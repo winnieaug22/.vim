@@ -9,7 +9,8 @@ set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 set nocompatible
-set expandtab " Use spaces instead of tabs
+" set expandtab " Use spaces instead of tabs
+set noexpandtab
 set nolist
 set listchars=eol:¶,tab:┊-,extends:»,precedes:«,trail:•
 set hlsearch
