@@ -5,6 +5,7 @@ set guioptions-=b
 set guioptions-=l
 set guioptions-=m
 set guioptions-=r
+set visualbell
 
 if has("gui_macvim")
     " set guifont=Monaco:h14

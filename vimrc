@@ -2,6 +2,7 @@ call pathogen#runtime_append_all_bundles()
 au VimResized * :wincmd =
 filetype plugin on
 filetype indent on
+syntax on
 set fileencodings=utf-8,cp950,big5,sjis,euc-jp,gbk,euc-kr,utf-bom,iso-2022-jp,iso8859-1,ucs-bom
 set termencoding=utf-8
 set encoding=utf-8
@@ -32,12 +33,15 @@ set nowrap
 set colorcolumn=80
 set incsearch
 set ttyfast
-" set cursorline
+set nocursorcolumn
+set nocursorline
+set norelativenumber
+syntax sync minlines=256
+autocmd BufEnter * :syn sync maxlines=500
 set showmatch
 set matchtime=5
 " set diffopt+=iwhite
 colorscheme molokai
-syntax on
 " go to last position
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -73,13 +77,13 @@ nmap <F12> :w<CR>:make!<CR>:cw<CR>
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 set nofoldenable
-autocmd Filetype c,cpp set foldmethod=syntax
 
 " highlight doxygen syntax
+autocmd Filetype c,cpp set foldmethod=indent
 autocmd Filetype c     set syntax=c.doxygen
 autocmd Filetype cpp   set syntax=cpp.doxygen
 autocmd Filetype java  set syntax=java.doxygen
-autocmd Filetype java  set foldmethod=syntax
+autocmd Filetype java  set foldmethod=indent
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 autocmd Filetype javascript setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m
 autocmd Filetype perl set foldmarker={,}
@@ -140,7 +144,7 @@ let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
 let g:yankring_history_dir='$HOME/.vim'
 let hostname = hostname()
-if  hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7"
+if  hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname == "vgintwm118" || hostname == "vgintwm119" || hostname == "vgintwm120"
     set shell=/bin/sh
     let g:tagbar_ctags_bin="$HOME/opt/bin/ctags"
     set mouse=a
