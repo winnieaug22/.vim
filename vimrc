@@ -3,6 +3,8 @@ au VimResized * :wincmd =
 filetype plugin on
 filetype indent on
 syntax on
+" set 7 lines to the cursor - when moving vertically using j/k
+set so=7
 set fileencodings=utf-8,cp950,big5,sjis,euc-jp,gbk,euc-kr,utf-bom,iso-2022-jp,iso8859-1,ucs-bom
 set termencoding=utf-8
 set encoding=utf-8
@@ -19,12 +21,15 @@ set wildmenu
 set t_Co=256
 set noeb
 set vb
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " No annoying sound on errors
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noerrorbells
 set novisualbell
 set t_vb=
 set t_ut=
 set tm=500
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 set fileformats=unix,dos
 set fileformat=unix
@@ -69,6 +74,12 @@ nmap <silent> <F3> :NERDTreeToggle<CR>
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
+" for Ack/Ag
+if executable('ag')
+    let g:ack_use_dispatch=1
+    let g:ackprg = 'ag --vimgrep'
+    nmap Ack :Ack! <C-R>=expand("<cword>")<CR>
+endif
 " edit hex
 nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
