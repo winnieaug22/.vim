@@ -154,3 +154,6 @@
 [submodule "bundle/vim-diff-enhanced"]
 	path = bundle/vim-diff-enhanced
 	url = https://github.com/chrisbra/vim-diff-enhanced
+[submodule "bundle/unicode.vim"]
+	path = bundle/unicode.vim
+	url = https://github.com/chrisbra/unicode.vim
