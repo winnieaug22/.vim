@@ -9,7 +9,7 @@ endif
 let colors_name = "wcdiff"
 
 hi Boolean           cterm=bold         ctermfg=18      ctermbg=255
-hi ColorColumn       cterm=bold         ctermfg=0       ctermbg=117
+hi ColorColumn       cterm=bold         ctermfg=0       ctermbg=183
 hi Comment           cterm=bold         ctermfg=244     ctermbg=255
 hi Conceal           cterm=bold         ctermfg=242     ctermbg=255
 hi Conditional       cterm=bold         ctermfg=18      ctermbg=255
@@ -19,7 +19,7 @@ hi CursorColumn      cterm=bold         ctermfg=NONE    ctermbg=255
 hi CursorLine        cterm=bold         ctermfg=NONE    ctermbg=255
 hi CursorLineNr      cterm=bold         ctermfg=247     ctermbg=255
 hi DiffAdd           cterm=bold         ctermfg=NONE    ctermbg=194
-hi DiffChange        cterm=bold         ctermfg=NONE    ctermbg=187
+hi DiffChange        cterm=bold         ctermfg=NONE    ctermbg=195
 hi DiffDelete        cterm=bold         ctermfg=NONE    ctermbg=181
 hi DiffText          cterm=bold         ctermfg=NONE    ctermbg=123
 hi Directory         cterm=bold         ctermfg=239     ctermbg=255
