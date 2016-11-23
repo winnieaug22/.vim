@@ -46,7 +46,11 @@ autocmd BufEnter * :syn sync maxlines=500
 set showmatch
 set matchtime=5
 " set diffopt+=iwhite
-colorscheme molokai
+if &diff
+    colorscheme wcdiff
+else
+    colorscheme molokai
+endif
 " go to last position
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
