@@ -165,5 +165,4 @@ let hostname = hostname()
 if  hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname == "vgintwm118" || hostname == "vgintwm119" || hostname == "vgintwm120"
     set shell=/bin/sh
     let g:tagbar_ctags_bin="$HOME/opt/bin/ctags"
-    set mouse=a
 endif
