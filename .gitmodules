@@ -103,9 +103,6 @@
 [submodule "bundle/unite.vim"]
 	path = bundle/unite.vim
 	url = https://github.com/Shougo/unite.vim
-[submodule "bundle/vimproc.vim"]
-	path = bundle/vimproc.vim
-	url = https://github.com/Shougo/vimproc.vim
 [submodule "bundle/vim-signify"]
 	path = bundle/vim-signify
 	url = https://github.com/mhinz/vim-signify
