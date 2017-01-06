@@ -16,7 +16,7 @@ hi Conditional       cterm=bold         ctermfg=18      ctermbg=252
 hi Constant          cterm=bold         ctermfg=242     ctermbg=252
 hi Cursor            cterm=reverse      ctermfg=16      ctermbg=252
 hi CursorColumn      cterm=bold         ctermfg=NONE    ctermbg=252
-hi CursorLine        cterm=bold         ctermfg=NONE    ctermbg=252
+hi CursorLine        cterm=bold         ctermfg=NONE    ctermbg=229
 hi CursorLineNr      cterm=bold         ctermfg=247     ctermbg=252
 hi DiffAdd           cterm=bold         ctermfg=NONE    ctermbg=194
 hi DiffChange        cterm=bold         ctermfg=NONE    ctermbg=251

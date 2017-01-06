@@ -1,4 +1,5 @@
 call pathogen#runtime_append_all_bundles()
+let windows=has("win32") || has("win64")
 au VimResized * :wincmd =
 filetype plugin on
 filetype indent on
@@ -48,6 +49,7 @@ set matchtime=5
 " set diffopt+=iwhite
 if &diff
     colorscheme wcdiff
+    set cursorline
 else
     colorscheme molokai
 endif
@@ -58,12 +60,7 @@ endif
 
 " for Powerline
 set laststatus=2
-if has("win32")
-    let g:Powerline_symbols = 'compatible'
-else
-    let g:Powerline_symbols = 'unicode'
-endif
-
+let g:Powerline_symbols = windows ? 'compatible' : 'unicode'
 " tab mapping
 map td :tabclose<CR>
 map th :tabprev<CR>
@@ -105,7 +102,7 @@ autocmd Filetype javascript setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %
 autocmd Filetype perl set foldmarker={,}
 autocmd Filetype perl set foldmethod=marker
 
-if has("win32")
+if windows
     set tags+=$VIM/vimfiles/tags/stl_tags
     set dict+=$VIM/vimfiles/dict/words
 else
@@ -142,7 +139,7 @@ let g:miniBufExplorerAutoStart = 0
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest ",preview
-if has("win32") || has("win64")
+if windows
     set directory=$TMP
 end
 set lazyredraw
@@ -161,8 +158,14 @@ let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
 let g:yankring_history_dir='$HOME/.vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for workstation in Synopsys
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let hostname = hostname()
-if  hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname == "vgintwm118" || hostname == "vgintwm119" || hostname == "vgintwm120"
+if hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname == "vgintwm118" || hostname == "vgintwm119" || hostname == "vgintwm120"
     set shell=/bin/sh
     let g:tagbar_ctags_bin="$HOME/opt/bin/ctags"
+    let g:snips_author="Campbell, Kuo"
+    let g:snips_email="wenchi@synopsys.com"
+    let g:DoxygenToolkit_authorName=g:snips_author.' <'.g:snips_email.'>'
 endif
