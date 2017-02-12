@@ -2,7 +2,6 @@
 
 git submodule foreach git pull origin master
 
-
 # remove submodule
 # $ cd your_project
 # $ git rm --cached another_project
