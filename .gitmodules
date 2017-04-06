@@ -136,3 +136,9 @@
 [submodule "bundle/vim-snipmate"]
 	path = bundle/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate
+[submodule "bundle/plantuml-syntax"]
+	path = bundle/plantuml-syntax
+	url = https://github.com/aklt/plantuml-syntax
+[submodule "bundle/vim-slumlord"]
+	path = bundle/vim-slumlord
+	url = https://github.com/scrooloose/vim-slumlord
