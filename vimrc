@@ -101,6 +101,7 @@ autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 autocmd Filetype javascript setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m
 autocmd Filetype perl set foldmarker={,}
 autocmd Filetype perl set foldmethod=marker
+autocmd Filetype python set foldmethod=indent
 
 if windows
     set tags+=$VIM/vimfiles/tags/stl_tags
