@@ -84,6 +84,20 @@ snippet filesize
 		fseek(file_name, pos, SEEK_SET);
 		return len;
 	}
+snippet fork
+	pid_t pid;
+	switch (pid = fork()) {
+		case -1:
+			/* fork failed! */
+			peror("fork failed!");
+			break;
+		case 0:
+			/* child process */
+			break;
+		default:
+			/* parent process */
+			break;
+	}
 snippet measureTime linux
 	struct timeval t_start, t_end;
 	double elapsedTime;
