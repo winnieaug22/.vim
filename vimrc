@@ -49,7 +49,7 @@ set matchtime=5
 " set diffopt+=iwhite
 if &diff
     colorscheme wcdiff
-    set cursorline
+    let g:signify_disable_by_default = 1
 else
     colorscheme molokai
 endif
