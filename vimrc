@@ -86,6 +86,7 @@ nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
 nmap <F12> :w<CR>:make!<CR>:cw<CR>
 nmap <F11> :MBEToggle<CR>
+nmap mru :CtrlPMRUFiles<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
