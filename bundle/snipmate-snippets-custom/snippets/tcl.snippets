@@ -1,0 +1,25 @@
+snippet sl
+	###############################################################################
+snippet quickStartExample "quickStartExample"
+	quickStartExample
+
+	vdCovExit -noprompt
+	# vim:ft=tcl
+snippet dump "file"
+	puts "========================================="
+	puts "${1:filename}"
+	puts [exec tail -n+8 ${1:filename}]
+	puts "========================================="
+snippet dump "ExclMgr"
+	gui_list_expand -id ExclMgr.1 -all <root>
+	gui_window_dump -id ExclMgr.1 -out
+snippet dump "CovDetail"
+	gui_window_dump -id CovDetail.1 -out
+snippet dump "CoverageTable"
+	gui_window_dump -id CoverageTable.1 -out
+snippet dump "HVP"
+	gui_window_dump -id HVP.1 -out
+snippet dump "CovSrc"
+	gui_window_dump -id CovSrc.1 -out
+snippet dump "Test"
+	gui_window_dump -id Test.1 -out

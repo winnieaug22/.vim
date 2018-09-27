@@ -105,10 +105,10 @@ autocmd Filetype perl set foldmethod=marker
 autocmd Filetype python set foldmethod=indent
 
 if windows
-    set tags+=$VIM/vimfiles/tags/stl_tags
+    autocmd Filetype c,cpp set tags+=$VIM/vimfiles/tags/stl_tags
     set dict+=$VIM/vimfiles/dict/words
 else
-    set tags+=$HOME/.vim/tags/stl_tags
+    autocmd Filetype c,cpp set tags+=$HOME/.vim/tags/stl_tags
     set dict+=$HOME/.vim/dict/words
 endif
 set switchbuf+=usetab,newtab
@@ -170,4 +170,8 @@ if hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname
     let g:snips_author="Campbell, Kuo"
     let g:snips_email="wenchi@synopsys.com"
     let g:DoxygenToolkit_authorName=g:snips_author.' <'.g:snips_email.'>'
+    autocmd Filetype c,cpp set tags+=$HOME/.vim/tags/qt4_tags
+    " set g:signify_update_on_bufenter to 0, if you often switch between buffers.
+    let g:signify_update_on_bufenter=0
+    " let g:signify_vcs_list = [ 'git' ]
 endif
