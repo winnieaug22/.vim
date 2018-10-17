@@ -5,21 +5,34 @@ snippet quickStartExample "quickStartExample"
 
 	vdCovExit -noprompt
 	# vim:ft=tcl
-snippet dump "file"
+snippet dump_file "file"
+	puts "content of ${1:filename}"
 	puts "========================================="
 	puts "${1:filename}"
-	puts [exec tail -n+8 ${1:filename}]
+	puts [exec cat ./${1:filename}]
 	puts "========================================="
-snippet dump "ExclMgr"
+snippet dump_window "ExclMgr"
 	gui_list_expand -id ExclMgr.1 -all <root>
 	gui_window_dump -id ExclMgr.1 -out
-snippet dump "CovDetail"
+snippet dump_window "CovDetail"
 	gui_window_dump -id CovDetail.1 -out
-snippet dump "CoverageTable"
+snippet dump_window "CoverageTable"
 	gui_window_dump -id CoverageTable.1 -out
-snippet dump "HVP"
+snippet dump_window "HVP"
 	gui_window_dump -id HVP.1 -out
-snippet dump "CovSrc"
+snippet dump_window "CovSrc"
 	gui_window_dump -id CovSrc.1 -out
-snippet dump "Test"
+snippet dump_window "Test"
 	gui_window_dump -id Test.1 -out
+snippet dump_list "ExclMgr"
+	gui_dump_list -id ExclMgr.1
+snippet dump_list "CovDetail"
+	gui_dump_list -id CovDetail.1
+snippet dump_list "CoverageTable"
+	gui_dump_list -id CoverageTable.1
+snippet dump_list "HVP"
+	gui_dump_list -id HVP.1
+snippet dump_list "CovSrc"
+	gui_dump_list -id CovSrc.1
+snippet dump_list "Test"
+	gui_dump_list -id Test.1
