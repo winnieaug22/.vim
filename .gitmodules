@@ -139,6 +139,3 @@
 [submodule "bundle/plantuml-syntax"]
 	path = bundle/plantuml-syntax
 	url = https://github.com/aklt/plantuml-syntax
-[submodule "mru"]
-	path = mru
-	url = https://github.com/yegappan/mru
