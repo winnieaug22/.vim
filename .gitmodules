@@ -124,18 +124,12 @@
 [submodule "bundle/vim-diff-enhanced"]
 	path = bundle/vim-diff-enhanced
 	url = https://github.com/chrisbra/vim-diff-enhanced
-[submodule "bundle/unicode.vim"]
-	path = bundle/unicode.vim
-	url = https://github.com/chrisbra/unicode.vim
 [submodule "bundle/minibufexpl.vim"]
 	path = bundle/minibufexpl.vim
 	url = https://github.com/fholgado/minibufexpl.vim
 [submodule "bundle/vim-snipmate"]
 	path = bundle/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate
-[submodule "bundle/plantuml-syntax"]
-	path = bundle/plantuml-syntax
-	url = https://github.com/aklt/plantuml-syntax
 [submodule "bundle/mru"]
 	path = bundle/mru
 	url = https://github.com/yegappan/mru
