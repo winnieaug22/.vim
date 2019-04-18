@@ -63,9 +63,6 @@ set laststatus=2
 let g:Powerline_symbols = windows ? 'compatible' : 'unicode'
 " tab mapping
 map td :tabclose<CR>
-map th :tabprev<CR>
-map tl :tabnext<CR>
-map tm :tabmove
 map tn :tabedit 
 "remove all white space
 nmap ,dw :%s/\s\+$//g<CR>
