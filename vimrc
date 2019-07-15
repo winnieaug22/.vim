@@ -158,6 +158,12 @@ let g:multi_cursor_exit_from_insert_mode=0
 let g:DirDiffExcludes = ".git"
 let g:yankring_history_dir='$HOME/.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-clang-formet setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:clang_format#style_options = {
+	\ "BasedOnStyle" : "Google",
+	\ "IndentWidth": 4 }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for workstation in Synopsys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let hostname = hostname()
