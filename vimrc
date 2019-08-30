@@ -58,19 +58,16 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" for Powerline
+" for vim-airline
 set laststatus=2
-let g:Powerline_symbols = windows ? 'compatible' : 'unicode'
+" let g:Powerline_symbols = windows ? 'compatible' : 'unicode'
 " tab mapping
 map td :tabclose<CR>
-map tn :tabedit 
+map tn :tabedit
 "remove all white space
 nmap ,dw :%s/\s\+$//g<CR>
 " make <Backspace> act as <Delete> in Visual mode
 vmap <bs> x
-nmap <silent> <F3> :NERDTreeToggle<CR>
-" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 " for Ack/Ag
 if executable('ag')
@@ -81,8 +78,13 @@ endif
 " edit hex
 nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
-nmap <F12> :w<CR>:make!<CR>:cw<CR>
+nmap <space>s/ :FlyGrep<CR>
+" NERDTree
+nmap <F9>  :NERDTreeToggle<CR>
+" Tagbar
+nmap <F10> :TagbarToggle<CR>
 nmap <F11> :MBEToggle<CR>
+nmap <F12> :w<CR>:Make<CR>
 nmap mru :CtrlPMRUFiles<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
@@ -115,15 +117,6 @@ if filereadable("cscope.out")
 elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
 endif
-
-map csc :cs find c <C-R>=expand("<cword>")<CR>
-map csd :cs find d <C-R>=expand("<cword>")<CR>
-map cse :cs find e <C-R>=expand("<cword>")<CR>
-map csf :cs find f <C-R>=expand("<cword>")<CR>
-map csg :cs find g <C-R>=expand("<cword>")<CR>
-map csi :cs find i <C-R>=expand("<cword>")<CR>
-map css :cs find s <C-R>=expand("<cword>")<CR>
-map cst :cs find t <C-R>=expand("<cword>")<CR>
 
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
@@ -160,9 +153,7 @@ let g:yankring_history_dir='$HOME/.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-clang-formet setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:clang_format#style_options = {
-	\ "BasedOnStyle" : "Google",
-	\ "IndentWidth": 4 }
+let g:clang_format#style_options = { "BasedOnStyle" : "Google", "IndentWidth": 4 }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for workstation in Synopsys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
