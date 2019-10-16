@@ -80,6 +80,7 @@ nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
 nmap <space>s/ :FlyGrep<CR>
 " NERDTree
+nmap <F8>  :NERDTreeFind<CR>
 nmap <F9>  :NERDTreeToggle<CR>
 " Tagbar
 nmap <F10> :TagbarToggle<CR>
@@ -154,6 +155,10 @@ let g:yankring_history_dir='$HOME/.vim'
 " vim-clang-formet setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_format#style_options = { "BasedOnStyle" : "Google", "IndentWidth": 4 }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=~/.fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for workstation in Synopsys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
