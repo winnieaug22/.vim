@@ -69,11 +69,9 @@ nmap ,dw :%s/\s\+$//g<CR>
 " make <Backspace> act as <Delete> in Visual mode
 vmap <bs> x
 let g:tagbar_autofocus = 1
-" for Ack/Ag
+" for Ag
 if executable('ag')
-    let g:ack_use_dispatch=1
-    let g:ackprg = 'ag --vimgrep'
-    nmap Ack :Ack! <C-R>=expand("<cword>")<CR>
+    nmap Ag :Ag <C-R>=expand("<cword>")<CR>
 endif
 " edit hex
 nmap <silent> <C-H> :%!xxd<CR>
