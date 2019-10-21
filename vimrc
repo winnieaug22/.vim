@@ -60,6 +60,8 @@ endif
 
 " for vim-airline
 set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 " let g:Powerline_symbols = windows ? 'compatible' : 'unicode'
 " tab mapping
 map td :tabclose<CR>
@@ -76,7 +78,6 @@ endif
 " edit hex
 nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
-nmap <space>s/ :FlyGrep<CR>
 " NERDTree
 nmap <F8>  :NERDTreeFind<CR>
 nmap <F9>  :NERDTreeToggle<CR>
@@ -84,7 +85,7 @@ nmap <F9>  :NERDTreeToggle<CR>
 nmap <F10> :TagbarToggle<CR>
 nmap <F11> :MBEToggle<CR>
 nmap <F12> :w<CR>:Make<CR>
-nmap mru :CtrlPMRUFiles<CR>
+nmap mru :History<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
@@ -125,8 +126,6 @@ let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
 let OmniCpp_MayCompleteDot = 0 " autocomplete after .
 let OmniCpp_MayCompleteArrow = 0 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 0 " autocomplete after ::
-" only want open MBE manually when needed
-let g:miniBufExplorerAutoStart = 0
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest ",preview
@@ -157,6 +156,22 @@ let g:clang_format#style_options = { "BasedOnStyle" : "Google", "IndentWidth": 4
 " fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.fzf
+
+function! s:ag_with_opts(arg, bang)
+  let tokens  = split(a:arg)
+  let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
+  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
+  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
+endfunction
+autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
+
+autocmd VimEnter * command! P4opened call fzf#run({
+\ 'source':  "p4opened -n | awk '{ print $4 }'",
+\ 'options': '-m -x +s',
+\ 'sink':    'e'})
+
+" Replace the default dictionary completion with fzf-based fuzzy completion
+inoremap <expr> <c-x><c-k> fzf#vim#complete('cat $HOME/.vim//dict/words')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for workstation in Synopsys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -172,3 +187,4 @@ if hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname
     let g:signify_update_on_bufenter=0
     " let g:signify_vcs_list = [ 'git' ]
 endif
+set tags=tags;
