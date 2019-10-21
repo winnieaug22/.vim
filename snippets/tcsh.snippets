@@ -1,0 +1,25 @@
+snippet #!
+	#!/usr/bin/env tcsh
+snippet sl
+	###############################################################################
+snippet foreach
+	foreach ${1:var} ( ${2:list} )
+
+	end
+snippet if
+	if (${1:expression}) then
+		${2:statements}
+	endif
+snippet while
+	while (${1:expression})
+		${2:statements}
+	end
+snippet switch
+	switch (${1:expression})
+		default :
+			breaksw
+	endsw
+snippet case
+	case ${1:case} :
+		${2:statements}
+	breaksw

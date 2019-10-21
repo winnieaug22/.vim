@@ -1,0 +1,380 @@
+snippet sl
+	###############################################################################
+snippet checkos
+	###############################################################################
+	# check OS
+	###############################################################################
+	ifdef SystemRoot
+		OS = Windows
+	else ifeq ($(shell uname -s),Darwin)
+		OS = MacOSX
+	else
+		OS = Linux
+	endif
+snippet C
+	###############################################################################
+	# compiler setting
+	###############################################################################
+	CC      = gcc
+	CFLAGS  = -g -Wall -std=c99
+	LIBS    = -lm
+	INCPATH =
+	DIR     = $(shell pwd)
+
+	###############################################################################
+	# source files setting
+	###############################################################################
+	C_SOURCES = $(shell find . -name "*.c")
+	C_OBJS    = $(patsubst %.c,%.o,$(wildcard $(C_SOURCES)))
+	OBJS      = $(C_OBJS)
+	EXEC      = $(shell basename $(DIR))
+
+	###############################################################################
+	.PHONY : clean clean_all
+	###############################################################################
+	all: $(EXEC)
+
+	%.o:%.c
+		$(CC) $(CFLAGS) $(INCPATH) -c $< -o $@
+
+	$(EXEC): $(OBJS)
+		$(CC) $(OBJS) -o $(EXEC) $(LIBS)
+
+	###############################################################################
+	clean:
+		@rm -vfr $(OBJS)
+	clean_all: clean
+		@rm -vfr $(EXEC)
+	###############################################################################
+	CTAGS:
+		ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+	###############################################################################
+snippet CPP
+	###############################################################################
+	# compiler setting
+	###############################################################################
+	CC       = gcc
+	CXX      = g++
+	CFLAGS   = -g -Wall -std=c99
+	CXXFLAGS = $(CFLAGS) -Weffc++
+	LIBS     = -lm
+	INCPATH  =
+	DIR      = $(shell pwd)
+
+	###############################################################################
+	# source files setting
+	###############################################################################
+	C_SOURCES   = $(shell find . -name "*.c")
+	CXX_SOURCES = $(shell find . -name "*.cpp")
+	C_OBJS      = $(patsubst %.c,%.o,$(wildcard $(C_SOURCES)))
+	CXX_OBJS    = $(patsubst %.cpp,%.o,$(wildcard $(CXX_SOURCES)))
+	OBJS        = $(C_OBJS) $(CXX_OBJS)
+	EXEC        = $(shell basename $(DIR))
+
+	###############################################################################
+	.PHONY : clean clean_all
+	###############################################################################
+	all: $(EXEC)
+
+	%.o:%.c
+		$(CC)  $(CFLAGS)   $(INCPATH) -c $< -o $@
+	%.o:%.cpp
+		$(CXX) $(CXXFLAGS) $(INCPATH) -c $< -o $@
+
+	$(EXEC): $(OBJS)
+		$(CXX) $(OBJS) -o $(EXEC) $(LIBS)
+
+	###############################################################################
+	clean:
+		@rm -vfr $(OBJS)
+	clean_all: clean
+		@rm -vfr $(EXEC)
+	###############################################################################
+	CTAGS:
+		ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+	###############################################################################
+snippet objc
+	###############################################################################
+	# compiler setting
+	###############################################################################
+	CC         = clang
+	CXX        = clang
+	CFLAGS     = -g -Wall -std=c99
+	CXXFLAGS   = $(CFLAGS) -Weffc++
+	FRAMEWORKS = -framework Foundation -framework Cocoa -framework AppKit
+	LDFLAGS    = $(FRAMEWORKS)
+	LIBS       = -lobjc $(LDFLAGS)
+	INCPATH    =
+	DIR        = $(shell pwd)
+
+	###############################################################################
+	# source files setting
+	###############################################################################
+	C_SOURCES      = $(shell find . -name "*.c")
+	CXX_SOURCES    = $(shell find . -name "*.cpp")
+	OBJC_SOURCES   = $(shell find . -name "*.m")
+	OBJCCC_SOURCES = $(shell find . -name "*.mm")
+	C_OBJS         = $(patsubst %.c,%.o,$(wildcard $(C_SOURCES)))
+	CXX_OBJS       = $(patsubst %.cpp,%.o,$(wildcard $(CXX_SOURCES)))
+	OBJC_OBJS      = $(patsubst %.m,%.o,$(wildcard $(OBJC_SOURCES)))
+	OBJCXX_OBJS    = $(patsubst %.mm,%.o,$(wildcard $(OBJCXX_SOURCES)))
+	OBJS           = $(C_OBJS) $(CXX_OBJS) $(OBJC_OBJS) $(OBJCXX_OBJS)
+	EXEC           = $(shell basename $(DIR))
+
+	###############################################################################
+	.PHONY : clean clean_all
+	###############################################################################
+	all: $(EXEC)
+
+	%.o:%.c
+		$(CC)  $(CFLAGS)   $(INCPATH) -c $< -o $@
+	%.o:%.cpp
+		$(CXX) $(CXXFLAGS) $(INCPATH) -c $< -o $@
+	%.m.o:%.m
+		$(CC)  $(CFLAGS)   $(INCPATH) -c $< -o $@
+	%.mm.o:%.mm
+		$(CXX) $(CXXFLAGS) $(INCPATH) -c $< -o $@
+
+	$(EXEC): $(OBJS)
+		$(CXX) $(OBJS) -o $(EXEC) $(LIBS)
+
+	###############################################################################
+	clean:
+		@rm -vfr $(OBJS)
+	clean_all: clean
+		@rm -vfr $(EXEC)
+	###############################################################################
+	CTAGS:
+		ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+	###############################################################################
+snippet MSVC
+	MSBUILD=msbuild
+	SLN_FILE=
+	CONFIGURATION=Debug # Release
+	FLAGS=/nologo /v:q /property:GenerateFullPaths=true
+
+	all: build
+
+	build:
+		$(MSBUILD) $(SLN_FILE) /t:Build /p:Configuration=$(CONFIGURATION) $(FLAGS)
+
+	rebuild:
+		$(MSBUILD) $(SLN_FILE) /t:Rebuild /p:Configuration=$(CONFIGURATION) $(FLAGS)
+
+	clean:
+		$(MSBUILD) $(SLN_FILE) /t:Clean /p:Configuration=$(CONFIGURATION) $(FLAGS)
+snippet CLIB
+	###############################################################################
+	# compiler setting
+	###############################################################################
+	CC       = gcc
+	CFLAGS   = -g -Wall -std=c99
+	AR       = ar
+	LIBS     = -lm
+	INCPATH  = -I.
+	DIR      = $(shell pwd)
+	BASENAME = $(shell basename $(DIR))
+
+	###############################################################################
+	# source files setting
+	###############################################################################
+	C_SOURCES   	 = $(shell find . -name "*.c")
+	C_STATIC_OBJS    = $(patsubst %.c,%_static.o,$(wildcard $(C_SOURCES)))
+	C_DYNAMIC_OBJS   = $(patsubst %.c,%_dynamic.o,$(wildcard $(C_SOURCES)))
+	STATIC_OBJS      = $(C_STATIC_OBJS)
+	DYNAMIC_OBJS     = $(C_DYNAMIC_OBJS)
+	LIB_A            = $(BASENAME).a
+	LIB_SO           = $(BASENAME).so
+
+	###############################################################################
+	.PHONY : clean
+	###############################################################################
+	all: $(LIB_A) $(LIB_SO)
+		@echo ' '
+
+	%_static.o:%.c
+		$(CC) -c $(CFLAGS) $(INCPATH) $< -o $@
+
+	%_dynamic.o:%.c
+		$(CC) -c $(CFLAGS) $(INCPATH) $< -o $@ -fPIC
+
+	$(LIB_A): $(STATIC_OBJS)
+		$(AR) rcs $@ $(STATIC_OBJS)
+		@echo 'Finished building: $@'
+
+	$(LIB_SO): $(DYNAMIC_OBJS)
+		$(CC) $(DYNAMIC_OBJS) -shared -o $@
+		@echo 'Finished building: $@'
+	###############################################################################
+	clean:
+		@rm -vfr $(STATIC_OBJS) $(LIB_A) $(DYNAMIC_OBJS) $(LIB_SO)
+	###############################################################################
+snippet CPPLIB
+	###############################################################################
+	# compiler setting
+	###############################################################################
+	CC       = gcc
+	CXX      = g++
+	CFLAGS   = -g -Wall -std=c99
+	CXXFLAGS = $(CFLAGS) -Weffc++
+	AR       = ar
+	LIBS     = -lm
+	INCPATH  = -I.
+	DIR      = $(shell pwd)
+	BASENAME = $(shell basename $(DIR))
+
+	###############################################################################
+	# source files setting
+	###############################################################################
+	C_SOURCES   	 = $(shell find . -name "*.c")
+	CXX_SOURCES 	 = $(shell find . -name "*.cpp")
+	C_STATIC_OBJS    = $(patsubst %.c,%_static.o,$(wildcard $(C_SOURCES)))
+	CXX_STATIC_OBJS  = $(patsubst %.cpp,%_static.o,$(wildcard $(CXX_SOURCES)))
+	C_DYNAMIC_OBJS   = $(patsubst %.c,%_dynamic.o,$(wildcard $(C_SOURCES)))
+	CXX_DYNAMIC_OBJS = $(patsubst %.cpp,%_dynamic.o,$(wildcard $(CXX_SOURCES)))
+	STATIC_OBJS      = $(C_STATIC_OBJS) $(CXX_STATIC_OBJS)
+	DYNAMIC_OBJS     = $(C_DYNAMIC_OBJS) $(CXX_DYNAMIC_OBJS)
+	LIB_A            = $(BASENAME).a
+	LIB_SO           = $(BASENAME).so
+
+	###############################################################################
+	.PHONY : clean
+	###############################################################################
+	all: $(LIB_A) $(LIB_SO)
+		@echo ' '
+
+	%_static.o:%.c
+		$(CC) -c $(CFLAGS) $(INCPATH) $< -o $@
+	%_static.o:%.cpp
+		$(CXX) -c $(CXXFLAGS) $(INCPATH) $< -o $@
+
+	%_dynamic.o:%.c
+		$(CC) -c $(CFLAGS) $(INCPATH) $< -o $@ -fPIC
+	%_dynamic.o:%.cpp
+		$(CXX) -c $(CXXFLAGS) $(INCPATH) $< -o $@ -fPIC
+
+	$(LIB_A): $(STATIC_OBJS)
+		$(AR) rcs $@ $(STATIC_OBJS)
+		@echo 'Finished building: $@'
+
+	$(LIB_SO): $(DYNAMIC_OBJS)
+		$(CXX) $(DYNAMIC_OBJS) -shared -o $@
+		@echo 'Finished building: $@'
+	###############################################################################
+	clean:
+		@rm -vfr $(STATIC_OBJS) $(LIB_A) $(DYNAMIC_OBJS) $(LIB_SO)
+	###############################################################################
+snippet driver
+	obj-m += main.o
+
+	all:
+		make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+	clean:
+		make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+snippet gtklib
+	\`pkg-config --libs gtk+-2.0\`
+snippet gtkflag
+	\`pkg-config --cflags gtk+-2.0\`
+snippet Android
+	###############################################################################
+	# Run the following command before using this makefile
+	# 1. get target infomatioin
+	# 		$ android list target
+	# 2. update project
+	# 		$ android update project -t target -p .
+	###############################################################################
+
+	PACKAGE=${1:com.example.apkname}
+	ACTIVITY=$(PACKAGE).${2:MainActivity}
+
+	all: run_debug
+
+	###############################################################################
+	# Removes output files created by other targets.
+	# This calls the same target on all dependent projects.
+	# Use 'ant nodeps clean' to only clean the local project
+
+	clean:
+		ant clean
+
+	###############################################################################
+	# Builds the application and signs it with a debug key.
+	# The 'nodeps' target can be used to only build the
+	# current project and ignore the libraries using:
+	# 'ant nodeps debug'
+	debug:
+		ant debug
+
+	###############################################################################
+	# Builds the application. The generated apk file must be
+	# signed before it is published.
+	# The 'nodeps' target can be used to only build the
+	# current project and ignore the libraries using:
+	# 'ant nodeps release'
+	release:
+		ant release
+
+	###############################################################################
+	# Installs (only) the debug package.
+
+	installd: debug
+		ant installd
+
+	###############################################################################
+	# Installs (only) the release package.
+	installr: release
+		ant installr
+
+	###############################################################################
+	# Uninstalls the application from a running emulator or
+	# device. Also uninstall tested package if applicable
+	# unless 'nodeps' is used as well.
+	uninstall:
+		ant uninstall
+
+	###############################################################################
+	run_debug: installd
+		adb shell am start -n $(PACKAGE)/$(ACTIVITY)
+
+	###############################################################################
+	run_release: installr
+		adb shell am start -n $(PACKAGE)/$(ACTIVITY)
+snippet Android.mk
+	LOCAL_PATH := $(call my-dir)
+
+	include $(CLEAR_VARS)
+
+	LOCAL_MODULE    := ${1:MODULE}
+	LOCAL_SRC_FILES := ${2:SRC FILE}
+
+	include $(BUILD_SHARED_LIBRARY)
+snippet java
+	###############################################################################
+	# compiler setting
+	###############################################################################
+	JAVAC        = javac
+	JAVA         = java
+	DIR          = $(shell pwd)
+	###############################################################################
+	# source files setting
+	###############################################################################
+	JAVA_SOURCES = $(shell find . -name "*.java")
+	JAVA_CLASSES = $(patsubst %.java,%.class,$(wildcard $(JAVA_SOURCES)))
+	EXEC         = $(shell basename $(DIR))
+
+	###############################################################################
+	.PHONY : clean clean_all
+	###############################################################################
+	all: $(JAVA_CLASSES)
+
+	%.class:%.java
+		$(JAVAC) $<
+	###############################################################################
+	run: $(JAVA_CLASSES)
+		@$(JAVA) $(EXEC)
+	###############################################################################
+	clean:
+		@rm -vfr $(JAVA_CLASSES)
+	clean_all: clean
+	###############################################################################

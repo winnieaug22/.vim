@@ -1,0 +1,16 @@
+snippet sl
+	###############################################################################
+snippet dialog msgbox
+	dialog --title ${1:title} --msgbox ${2:message} ${3:height} ${4:width}
+snippet dialog yesno
+	dialog --title ${1:title} --yesno ${2:message} ${3:height} ${4:width}
+	choose=$?
+	#   0 - Yes chosen.
+	#   1 - No chosen.
+	# 255 - Escape key was pressed i.e. box closed
+snippet dialog radiolist
+	choose=$(dialog --title ${1:title} --radiolist ${2:message} ${3:height} ${4:width} ${5:list-height} \
+	    1 "option 1" ON  \
+	    2 "option 2" OFF \
+	    3 "option 3" OFF \
+	2>&1 >/dev/tty)
