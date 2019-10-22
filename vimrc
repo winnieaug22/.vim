@@ -1,11 +1,9 @@
-call plug#begin()
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/majutsushi/tagbar'
 Plug 'https://github.com/vim-scripts/VisIncr.git'
 Plug 'https://github.com/vim-scripts/OmniCppComplete.git'
 Plug 'https://github.com/Twinside/vim-cuteErrorMarker.git'
