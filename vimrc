@@ -213,7 +213,12 @@ autocmd VimEnter * command! P4opened call fzf#run({
 \ 'sink':    'e'})
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
-inoremap <expr> <c-x><c-k> fzf#vim#complete('cat $HOME/.vim//dict/words')
+" inoremap <expr> <c-x><c-k> fzf#vim#complete('cat $HOME/.vim//dict/words')
+inoremap <expr> <c-x><c-k> fzf#vim#complete({
+\ 'source':  'cat /usr/share/dict/words',
+\ 'options': '--multi --reverse',
+\ 'left':    20})
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for workstation in Synopsys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
