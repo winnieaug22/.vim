@@ -33,6 +33,7 @@ Plug 'https://github.com/tpope/vim-dispatch'
 Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
 Plug 'https://github.com/vim-utils/vim-man'
 Plug 'https://github.com/Yggdroot/indentLine'
+autocmd! User indentLine doautocmd indentLine Syntax
 Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'
 Plug 'https://github.com/chrisbra/vim-diff-enhanced'
 Plug 'https://github.com/garbas/vim-snipmate'
@@ -78,7 +79,11 @@ set fileformats=unix,dos
 set fileformat=unix
 set backspace=2
 set nowrap
-set colorcolumn=80
+" 80 chars/line
+set textwidth=0
+if exists('&colorcolumn')
+  set colorcolumn=80
+endif
 set incsearch
 set ttyfast
 set nocursorcolumn
@@ -104,7 +109,6 @@ endif
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:Powerline_symbols = windows ? 'compatible' : 'unicode'
 " tab mapping
 map td :tabclose<CR>
 map tn :tabedit
@@ -120,6 +124,9 @@ endif
 " edit hex
 nmap <silent> <C-H> :%!xxd<CR>
 nmap <silent> <C-J> :%!xxd -r<CR>
+" switch buffer
+nmap <silent> <C-P> :bp<CR>
+nmap <silent> <C-N> :bn<CR>
 " NERDTree
 nmap <F8>  :NERDTreeFind<CR>
 nmap <F9>  :NERDTreeToggle<CR>
@@ -152,7 +159,8 @@ else
     autocmd Filetype c,cpp set tags+=$HOME/.vim/tags/stl_tags
     set dict+=$HOME/.vim/dict/words
 endif
-set switchbuf+=usetab,newtab
+" Quickfix window commands respect the switchbuf option when opening a buffer.
+" set switchbuf+=usetab,newtab
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 if filereadable("cscope.out")
     cs add cscope.out
