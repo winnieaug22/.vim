@@ -41,6 +41,7 @@ Plug 'https://github.com/rhysd/vim-clang-format'
 Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'https://github.com/junegunn/fzf.vim'
 Plug 'https://github.com/campbellmath/vim-vp4'
+Plug 'https://github.com/majutsushi/tagbar'
 call plug#end()
 let windows=has("win32") || has("win64")
 au VimResized * :wincmd =
@@ -243,3 +244,9 @@ if hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname
     " let g:signify_vcs_list = [ 'git' ]
 endif
 set tags=tags;
+
+set ttymouse=sgr
+set balloondelay=250
+set ballooneval
+set balloonevalterm
+
