@@ -42,6 +42,7 @@ Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'https://github.com/junegunn/fzf.vim'
 Plug 'https://github.com/campbellmath/vim-vp4'
 Plug 'https://github.com/majutsushi/tagbar'
+Plug 'https://github.com/arecarn/vim-fold-cycle'
 call plug#end()
 let windows=has("win32") || has("win64")
 au VimResized * :wincmd =
