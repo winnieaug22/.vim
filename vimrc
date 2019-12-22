@@ -18,7 +18,7 @@ Plug 'https://github.com/vim-scripts/pythoncomplete.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 Plug 'https://github.com/dantler/vim-alternate.git'
 Plug 'https://github.com/vim-scripts/matchit.zip.git'
-Plug 'https://github.com/Lokaltog/vim-easymotion.git'
+Plug 'https://github.com/easymotion/vim-easymotion'
 Plug 'https://github.com/vim-scripts/SearchComplete.git'
 Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/pangloss/vim-javascript.git'
@@ -67,6 +67,17 @@ set wildmenu
 set t_Co=256
 set noeb
 set vb
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if version >= 801
+    set ttymouse=sgr
+    set balloondelay=250
+    set ballooneval
+    set balloonevalterm
+
+endif
+if version >= 802
+    set diffopt+=internal,algorithm:patience,indent-heuristic
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " No annoying sound on errors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,25 +220,28 @@ let g:clang_format#style_options = { "BasedOnStyle" : "Google", "IndentWidth": 4
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.fzf
 
-function! s:ag_with_opts(arg, bang)
-  let tokens  = split(a:arg)
-  let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
-  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
-  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
+function! RipgrepFzf(args, fullscreen)
+    let tokens  = split(a:args)
+    let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
+    let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
+    let command_fmt = 'ag '.ag_opts.' %s || true'
+    let initial_command = printf(command_fmt, shellescape(query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:args, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(), a:fullscreen)
 endfunction
-autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
+command! -nargs=* -bang Ag call RipgrepFzf(<q-args>, <bang>1)
 
-autocmd VimEnter * command! P4opened call fzf#run({
+autocmd VimEnter * command! P4opened call fzf#run(fzf#vim#with_preview({
 \ 'source':  "p4opened -n | awk '{ print $4 }'",
 \ 'options': '-m -x +s',
-\ 'sink':    'e'})
+\ 'sink':    'e'}))
 
-" Replace the default dictionary completion with fzf-based fuzzy completion
-" inoremap <expr> <c-x><c-k> fzf#vim#complete('cat $HOME/.vim//dict/words')
-inoremap <expr> <c-x><c-k> fzf#vim#complete({
-\ 'source':  'cat /usr/share/dict/words',
-\ 'options': '--multi --reverse',
-\ 'left':    20})
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for workstation in Synopsys
@@ -245,9 +259,3 @@ if hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname
     " let g:signify_vcs_list = [ 'git' ]
 endif
 set tags=tags;
-
-set ttymouse=sgr
-set balloondelay=250
-set ballooneval
-set balloonevalterm
-
