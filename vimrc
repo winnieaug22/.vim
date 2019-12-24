@@ -2,47 +2,47 @@
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/vim-scripts/VisIncr.git'
-Plug 'https://github.com/vim-scripts/OmniCppComplete.git'
-Plug 'https://github.com/Twinside/vim-cuteErrorMarker.git'
-Plug 'https://github.com/gregsexton/gitv.git'
-Plug 'https://github.com/MarcWeber/vim-addon-mw-utils'
-Plug 'https://github.com/tomtom/tlib_vim.git'
-Plug 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
-Plug 'https://github.com/vim-scripts/timestamp.vim.git'
-Plug 'https://github.com/vim-scripts/tComment.git'
-Plug 'https://github.com/jdevera/vim-stl-syntax.git'
-Plug 'https://github.com/vim-scripts/pythoncomplete.git'
-Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/dantler/vim-alternate.git'
-Plug 'https://github.com/vim-scripts/matchit.zip.git'
-Plug 'https://github.com/easymotion/vim-easymotion'
-Plug 'https://github.com/vim-scripts/SearchComplete.git'
-Plug 'https://github.com/honza/vim-snippets'
-Plug 'https://github.com/pangloss/vim-javascript.git'
-Plug 'https://github.com/jpalardy/vim-slime'
-Plug 'https://github.com/terryma/vim-expand-region.git'
-Plug 'https://github.com/sukima/xmledit.git'
-Plug 'https://github.com/vim-scripts/DirDiff.vim'
-Plug 'https://github.com/rdolgushin/gitignore.vim'
-Plug 'https://github.com/vim-scripts/TaskList.vim'
-Plug 'https://github.com/mhinz/vim-signify'
-Plug 'https://github.com/tpope/vim-dispatch'
-Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
-Plug 'https://github.com/vim-utils/vim-man'
-Plug 'https://github.com/Yggdroot/indentLine'
-autocmd! User indentLine doautocmd indentLine Syntax
-Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'
-Plug 'https://github.com/chrisbra/vim-diff-enhanced'
-Plug 'https://github.com/garbas/vim-snipmate'
-Plug 'https://github.com/rhysd/vim-clang-format'
-Plug 'https://github.com/vim-airline/vim-airline'
-Plug 'https://github.com/junegunn/fzf.vim'
-Plug 'https://github.com/campbellmath/vim-vp4'
-Plug 'https://github.com/majutsushi/tagbar'
-Plug 'https://github.com/arecarn/vim-fold-cycle'
+    Plug 'https://github.com/tpope/vim-fugitive.git'
+    Plug 'https://github.com/scrooloose/nerdtree.git'
+    Plug 'https://github.com/vim-scripts/VisIncr.git'
+    Plug 'https://github.com/vim-scripts/OmniCppComplete.git'
+    Plug 'https://github.com/Twinside/vim-cuteErrorMarker.git'
+    Plug 'https://github.com/gregsexton/gitv.git'
+    Plug 'https://github.com/MarcWeber/vim-addon-mw-utils'
+    Plug 'https://github.com/tomtom/tlib_vim.git'
+    Plug 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
+    Plug 'https://github.com/vim-scripts/timestamp.vim.git'
+    Plug 'https://github.com/vim-scripts/tComment.git'
+    Plug 'https://github.com/jdevera/vim-stl-syntax.git'
+    Plug 'https://github.com/vim-scripts/pythoncomplete.git'
+    Plug 'https://github.com/godlygeek/tabular.git'
+    Plug 'https://github.com/dantler/vim-alternate.git'
+    Plug 'https://github.com/vim-scripts/matchit.zip.git'
+    Plug 'https://github.com/easymotion/vim-easymotion'
+    Plug 'https://github.com/vim-scripts/SearchComplete.git'
+    Plug 'https://github.com/honza/vim-snippets'
+    Plug 'https://github.com/pangloss/vim-javascript.git'
+    Plug 'https://github.com/jpalardy/vim-slime'
+    Plug 'https://github.com/terryma/vim-expand-region.git'
+    Plug 'https://github.com/sukima/xmledit.git'
+    Plug 'https://github.com/vim-scripts/DirDiff.vim'
+    Plug 'https://github.com/rdolgushin/gitignore.vim'
+    Plug 'https://github.com/vim-scripts/TaskList.vim'
+    Plug 'https://github.com/mhinz/vim-signify'
+    Plug 'https://github.com/tpope/vim-dispatch'
+    Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
+    Plug 'https://github.com/vim-utils/vim-man'
+    Plug 'https://github.com/Yggdroot/indentLine'
+    autocmd! User indentLine doautocmd indentLine Syntax
+    Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'
+    Plug 'https://github.com/chrisbra/vim-diff-enhanced'
+    Plug 'https://github.com/garbas/vim-snipmate'
+    Plug 'https://github.com/rhysd/vim-clang-format'
+    Plug 'https://github.com/vim-airline/vim-airline'
+    Plug 'https://github.com/junegunn/fzf.vim'
+    Plug 'https://github.com/campbellmath/vim-vp4'
+    Plug 'https://github.com/majutsushi/tagbar'
+    Plug 'https://github.com/arecarn/vim-fold-cycle'
 call plug#end()
 let windows=has("win32") || has("win64")
 au VimResized * :wincmd =
@@ -220,7 +220,10 @@ let g:clang_format#style_options = { "BasedOnStyle" : "Google", "IndentWidth": 4
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.fzf
 
-function! RipgrepFzf(args, fullscreen)
+command! -bang -nargs=? -complete=dir Files
+\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>1)
+
+function! AgFzf(args, fullscreen)
     let tokens  = split(a:args)
     let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
     let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
@@ -230,12 +233,17 @@ function! RipgrepFzf(args, fullscreen)
     let spec = {'options': ['--phony', '--query', a:args, '--bind', 'change:reload:'.reload_command]}
     call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(), a:fullscreen)
 endfunction
-command! -nargs=* -bang Ag call RipgrepFzf(<q-args>, <bang>1)
+command! -nargs=* -bang Ag call AgFzf(<q-args>, <bang>1)
 
 autocmd VimEnter * command! P4opened call fzf#run(fzf#vim#with_preview({
 \ 'source':  "p4opened -n | awk '{ print $4 }'",
 \ 'options': '-m -x +s',
 \ 'sink':    'e'}))
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
