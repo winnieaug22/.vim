@@ -5,6 +5,7 @@ set guioptions-=b
 set guioptions-=l
 set guioptions-=m
 set guioptions-=r
+set guioptions-=e
 set visualbell
 
 if has("gui_macvim")
