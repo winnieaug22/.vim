@@ -3,7 +3,13 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/tpope/vim-fugitive.git'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/scrooloose/nerdtree.git'
+    Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
+    " NERDTree
+    nmap <F8>  :NERDTreeFind<CR>
+    nmap <F9>  :NERDTreeToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/vim-scripts/VisIncr.git'
     Plug 'https://github.com/vim-scripts/OmniCppComplete.git'
     Plug 'https://github.com/Twinside/vim-cuteErrorMarker.git'
@@ -28,21 +34,73 @@ call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/vim-scripts/DirDiff.vim'
     Plug 'https://github.com/rdolgushin/gitignore.vim'
     Plug 'https://github.com/vim-scripts/TaskList.vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/mhinz/vim-signify'
+        nmap <F11> :SignifyToggle<CR>
+        let g:signify_disable_by_default = 1
+        " set g:signify_update_on_bufenter to 0, if you often switch between buffers.
+        let g:signify_update_on_bufenter=0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/tpope/vim-dispatch'
-    Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
     Plug 'https://github.com/vim-utils/vim-man'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/Yggdroot/indentLine'
-    autocmd! User indentLine doautocmd indentLine Syntax
+        autocmd! User indentLine doautocmd indentLine Syntax
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'
     Plug 'https://github.com/chrisbra/vim-diff-enhanced'
     Plug 'https://github.com/garbas/vim-snipmate'
     Plug 'https://github.com/rhysd/vim-clang-format'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/vim-airline/vim-airline'
+        " for vim-airline
+        set laststatus=2
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline#extensions#tabline#formatter = 'unique_tail'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/junegunn/fzf.vim'
     Plug 'https://github.com/campbellmath/vim-vp4'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/majutsushi/tagbar'
+        " Tagbar
+        nmap <F10> :TagbarToggle<CR>
+        let g:tagbar_autofocus = 1
+        let g:tagbar_ctags_bin=trim(system('which ctags'))
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/arecarn/vim-fold-cycle'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+        " Setting of LanguageClient
+        set hidden
+        let g:LanguageClient_autoStart=0
+        let g:LanguageClient_serverCommands = {
+         \ 'cpp': ['clangd', '-background-index',],
+         \ }
+        let g:LanguageClient_diagnosticsList="Location"
+        function LC_maps()
+            if has_key(g:LanguageClient_serverCommands, &filetype)
+                nmap <F5> <Plug>(lcn-menu)
+                " Or map each action separately
+                nmap <silent> K <Plug>(lcn-hover)
+                nmap <silent> gd <Plug>(lcn-definition)
+                nmap <silent> rn <Plug>(lcn-rename)
+                nmap <silent> ac <Plug>(lcn-code-action)
+                nmap <silent> sy <Plug>(lcn-symbols)
+                nmap <silent> hi <Plug>(lcn-highlight)
+            endif
+        endfunction
+
+        autocmd FileType c,cpp call LC_maps()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    Plug 'https://github.com/dense-analysis/ale'
+        let g:airline#extensions#ale#enabled=1
+        let g:ale_set_balloons=1
+        let g:ale_enabled=0
+        nmap <F12> :ALEToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
 let windows=has("win32") || has("win64")
 au VimResized * :wincmd =
@@ -109,7 +167,6 @@ set matchtime=5
 " set diffopt+=iwhite
 if &diff
     colorscheme wcdiff
-    let g:signify_disable_by_default = 1
     set cursorline
 else
     colorscheme molokai
@@ -119,10 +176,6 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" for vim-airline
-set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
 " tab mapping
 map td :tabclose<CR>
 map tn :tabedit
@@ -130,7 +183,6 @@ map tn :tabedit
 nmap ,dw :%s/\s\+$//g<CR>
 " make <Backspace> act as <Delete> in Visual mode
 vmap <bs> x
-let g:tagbar_autofocus = 1
 " for Ag
 if executable('ag')
     nmap Ag :Ag <C-R>=expand("<cword>")<CR>
@@ -141,13 +193,6 @@ nmap <silent> <C-J> :%!xxd -r<CR>
 " switch buffer
 nmap <silent> <C-P> :bp<CR>
 nmap <silent> <C-N> :bn<CR>
-" NERDTree
-nmap <F8>  :NERDTreeFind<CR>
-nmap <F9>  :NERDTreeToggle<CR>
-" Tagbar
-nmap <F10> :TagbarToggle<CR>
-nmap <F11> :MBEToggle<CR>
-nmap <F12> :w<CR>:Make<CR>
 nmap mru :History<CR>
 " Highlight Whitespace. Remember ',dw' to kill the tyranny of whitespace!
 highlight WhitespaceEOL ctermbg=red guibg=red
@@ -170,6 +215,7 @@ if windows
     autocmd Filetype c,cpp set tags+=$VIM/vimfiles/tags/stl_tags
     set dict+=$VIM/vimfiles/dict/words
 else
+    set shell=/bin/bash
     autocmd Filetype c,cpp set tags+=$HOME/.vim/tags/stl_tags
     set dict+=$HOME/.vim/dict/words
 endif
@@ -247,24 +293,18 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
-" imap <c-x><c-k> <plug>(fzf-complete-word)
-" imap <c-x><c-f> <plug>(fzf-complete-path)
-" imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-" imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for workstation in Synopsys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let hostname = hostname()
-if hostname == "vgss5" || hostname == "vgss6" || hostname == "vgss7" || hostname == "vgintwm118" || hostname == "vgintwm119" || hostname == "vgintwm120"
-    set shell=/bin/sh
-    let g:tagbar_ctags_bin="$HOME/opt/bin/ctags"
+if hostname == "odcphy-vg-1306"
     let g:snips_author="Campbell, Kuo"
     let g:snips_email="wenchi@synopsys.com"
     let g:DoxygenToolkit_authorName=g:snips_author.' <'.g:snips_email.'>'
-    autocmd Filetype c,cpp set tags+=$HOME/.vim/tags/qt4_tags
-    " set g:signify_update_on_bufenter to 0, if you often switch between buffers.
-    let g:signify_update_on_bufenter=0
-    " let g:signify_vcs_list = [ 'git' ]
 endif
 set tags=tags;
