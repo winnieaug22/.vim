@@ -7,7 +7,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/scrooloose/nerdtree.git'
     Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
     " NERDTree
-    nmap <F8>  :NERDTreeFind<CR>
     nmap <F9>  :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/vim-scripts/VisIncr.git'
@@ -36,7 +35,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/vim-scripts/TaskList.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     Plug 'https://github.com/mhinz/vim-signify'
-        nmap <F11> :SignifyToggle<CR>
+        nmap <F8> :SignifyToggle<CR>
         let g:signify_disable_by_default = 1
         " set g:signify_update_on_bufenter to 0, if you often switch between buffers.
         let g:signify_update_on_bufenter=0
@@ -58,6 +57,7 @@ call plug#begin('~/.vim/plugged')
         let g:airline#extensions#tabline#enabled = 1
         let g:airline#extensions#tabline#formatter = 'unique_tail'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    Plug 'https://github.com/junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'https://github.com/junegunn/fzf.vim'
     Plug 'https://github.com/campbellmath/vim-vp4'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -266,21 +266,6 @@ let g:clang_format#style_options = { "BasedOnStyle" : "Google", "IndentWidth": 4
 " fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.fzf
-
-command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>1)
-
-function! AgFzf(args, fullscreen)
-    let tokens  = split(a:args)
-    let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
-    let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
-    let command_fmt = 'ag '.ag_opts.' %s || true'
-    let initial_command = printf(command_fmt, shellescape(query))
-    let reload_command = printf(command_fmt, '{q}')
-    let spec = {'options': ['--phony', '--query', a:args, '--bind', 'change:reload:'.reload_command]}
-    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(), a:fullscreen)
-endfunction
-command! -nargs=* -bang Ag call AgFzf(<q-args>, <bang>1)
 
 autocmd VimEnter * command! P4opened call fzf#run(fzf#vim#with_preview({
 \ 'source':  "p4opened -n | awk '{ print $4 }'",
