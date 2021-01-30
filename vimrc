@@ -26,6 +26,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/easymotion/vim-easymotion'
     Plug 'https://github.com/vim-scripts/SearchComplete.git'
     Plug 'https://github.com/honza/vim-snippets'
+    let g:snipMate = { 'snippet_version' : 1 }
     Plug 'https://github.com/pangloss/vim-javascript.git'
     Plug 'https://github.com/jpalardy/vim-slime'
     Plug 'https://github.com/terryma/vim-expand-region.git'
