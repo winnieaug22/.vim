@@ -44,11 +44,17 @@ map  go <Plug>(easymotion-bd-w)
 Plug 'https://github.com/SirVer/ultisnips'
 Plug 'https://github.com/honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
-" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'https://github.com/sukima/xmledit.git'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" DirDiff
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'https://github.com/vim-scripts/DirDiff.vim'
+let g:DirDiffExcludes = ".git"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'https://github.com/vim-scripts/TaskList.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'https://github.com/mhinz/vim-signify'
@@ -271,18 +277,4 @@ set lazyredraw
 if !has('nvim')
     set clipboard=exclude:.*
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" custom setting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:snips_author="Wen-Chi Guo"
-let g:snips_email="campbellmath@gmail.com"
-let g:DoxygenToolkit_authorName=g:snips_author.' <'.g:snips_email.'>'
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
-let g:slime_target = "tmux"
-let g:multi_cursor_exit_from_visual_mode=0
-let g:multi_cursor_exit_from_insert_mode=0
-let g:DirDiffExcludes = ".git"
-let g:yankring_history_dir='$HOME/.vim'
 set tags=tags;

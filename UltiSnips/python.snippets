@@ -1,11 +1,14 @@
 snippet utf8
-	# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+endsnippet
 snippet sl
-	###############################################################################
+###############################################################################
+endsnippet
 snippet shell
-	import subprocess
-	def shell(command):
-	    """docstring for shell"""
-	    pipe = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-	    (output, err) = pipe.communicate()
-	    return output
+import subprocess
+def shell(command):
+    """docstring for shell"""
+    pipe = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+    (output, err) = pipe.communicate()
+    return output
+endsnippet
