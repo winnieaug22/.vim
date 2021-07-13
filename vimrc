@@ -44,8 +44,8 @@ map  go <Plug>(easymotion-bd-w)
 Plug 'https://github.com/SirVer/ultisnips'
 Plug 'https://github.com/honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'https://github.com/sukima/xmledit.git'
@@ -150,6 +150,18 @@ Plug 'https://github.com/dense-analysis/ale'
 let g:airline#extensions#ale#enabled=1
 let g:ale_set_balloons=1
 let g:ale_enabled=0
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if version >= 800
+Plug 'https://github.com/voldikss/vim-floaterm'
+let g:floaterm_keymap_new    = '<F9>'
+let g:floaterm_keymap_prev   = '<F10>'
+let g:floaterm_keymap_next   = '<F11>'
+let g:floaterm_keymap_toggle = '<F12>'
+
+let g:floaterm_width  = 0.8
+let g:floaterm_height = 0.8
+let g:floaterm_autoclose = 1
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
