@@ -4,3 +4,35 @@ endsnippet
 snippet sl
 ###############################################################################
 endsnippet
+snippet
+endsnippet
+snippet set "set var = value"
+set ${1:variable} = ${2:value}
+endsnippet
+snippet setenv "set ENV_VAR VALUE"
+setenv ${1:ENV_VAR} ${2:VALUE}
+endsnippet
+snippet if "if ( conditino ) then"
+if ( ${1:condition} ) then
+    $2
+endif
+endsnippet
+snippet foreach
+foreach ${1:element} ( ${2:list} )
+    $3
+end
+endsnippet
+snippet while
+while ( ${1:condition} )
+    $2
+end
+endsnippet
+snippet switch
+switch ( $1 )
+    case $2:
+        $3
+        breaksw
+    default:
+        $4
+endsw
+endsnippet
