@@ -109,15 +109,23 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if version >= 800
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" highlight
+"   coc-highlight
+" snippet
+"   coc-snippets
+" shell script
+"   coc-sh
 " C/C++
-" :CocInstall coc-clangd
+"   coc-clangd
+"   coc-cmake
 " Python
-" :CocInstall coc-python
+"   coc-pyright
 " Javascript
-" :CocInstall coc-tsserver
-" :CocInstall coc-json
-" Markdown
-" :CocInstall coc-markdownlint
+"   coc-html
+"   coc-tsserver
+"   coc-json
+" Mrkdown
+"   coc-markdownlint
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
