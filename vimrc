@@ -109,6 +109,10 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if version >= 800
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" misc
+"   coc-calc
+"   coc-translator
+"   coc-spell-checker
 " highlight
 "   coc-highlight
 " snippet
@@ -118,6 +122,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " C/C++
 "   coc-clangd
 "   coc-cmake
+"   coc-clang-format-style-options
 " Python
 "   coc-pyright
 " Javascript
@@ -209,6 +214,16 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
+" NOTE: do NOT use `nore` mappings
+" coc-translator
+" popup
+nmap T <Plug>(coc-translator-p)
+vmap T <Plug>(coc-translator-pv)
+
+" replace
+nmap R <Plug>(coc-translator-r)
+vmap R <Plug>(coc-translator-rv)
+
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
     nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -218,7 +233,6 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
     vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
     vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
-
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -287,7 +301,7 @@ set hlsearch
 set number
 set wildmenu
 set t_Co=256
-set termguicolors
+" set termguicolors
 set noeb
 set vb
 set viminfo='100,<100,s100,h
