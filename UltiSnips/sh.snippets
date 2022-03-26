@@ -1,6 +1,26 @@
 snippet sl
 ###############################################################################
 endsnippet
+snippet process_arguments
+while [ "$*" ]; do
+    param=$1; shift; OPTARG=$1
+    case $param in
+    --option1)
+        opt1="${OPTARG}";
+        shift
+        ;;
+    --option2)
+        opt2="${OPTARG}";
+        shift
+        ;;
+    -h|--help)
+        usage
+        ;;
+    -*) usage "Unknown chrooter option: ${param}" ;;
+    *) break                                      ;;
+    esac
+done
+endsnippet
 snippet dialog_msgbox
 dialog --title ${1:title} --msgbox ${2:message} ${3:height} ${4:width}
 endsnippet

@@ -72,7 +72,8 @@ if version >= 800
 Plug 'https://github.com/vim-airline/vim-airline'
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_symbols_ascii = 1
+"let g:airline_symbols_ascii = 1
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
