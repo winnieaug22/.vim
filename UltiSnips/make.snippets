@@ -17,11 +17,12 @@ snippet C
 ###############################################################################
 # compiler setting
 ###############################################################################
-CC      = gcc
-CFLAGS  = -g -Wall -std=c99
-LIBS    = -lm
-INCPATH =
-DIR     = \$(shell pwd)
+GCOV_CFLAGS = -fprofile-arcs -ftest-coverage
+CC          = gcc $(GCOV_CFLAGS)
+CFLAGS      = -g -Wall -std=c99
+LIBS        = -lm
+INCPATH     =
+DIR         = \$(shell pwd)
 
 ###############################################################################
 # source files setting
@@ -46,24 +47,29 @@ all: \$(EXEC)
 clean:
 	@rm -vfr \$(OBJS)
 clean_all: clean
-	@rm -vfr \$(EXEC)
+	@rm -vfr \$(EXEC) *.gcda *.gcno *.info
 ###############################################################################
 CTAGS:
 	ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+###############################################################################
+gen_coverage:
+	geninfo .
+	genhtml *.info -o coverage_result
 ###############################################################################
 endsnippet
 snippet CPP
 ###############################################################################
 # compiler setting
 ###############################################################################
-CC         = gcc
-CXX        = g++
-CCXXFLAGS  = -g -Wall
-CFLAGS     = -std=c99 \$(CCXXFLAGS)
-CXXFLAGS   = -Weffc++ \$(CCXXFLAGS)
-LIBS       = -lm
-INCPATH    =
-DIR        = \$(shell pwd)
+GCOV_CFLAGS = -fprofile-arcs -ftest-coverage
+CC          = gcc $(GCOV_CFLAGS)
+CXX         = g++ $(GCOV_CFLAGS)
+CCXXFLAGS   = -g -Wall
+CFLAGS      = -std=c99 \$(CCXXFLAGS)
+CXXFLAGS    = -Weffc++ \$(CCXXFLAGS)
+LIBS        = -lm
+INCPATH     =
+DIR         = \$(shell pwd)
 
 ###############################################################################
 # source files setting
@@ -92,10 +98,14 @@ all: \$(EXEC)
 clean:
 	@rm -vfr \$(OBJS)
 clean_all: clean
-	@rm -vfr \$(EXEC)
+	@rm -vfr \$(EXEC) *.gcda *.gcno *.info
 ###############################################################################
 CTAGS:
 	ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+###############################################################################
+gen_coverage:
+	geninfo .
+	genhtml *.info -o coverage_result
 ###############################################################################
 endsnippet
 snippet CLIB
