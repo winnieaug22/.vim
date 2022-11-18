@@ -307,7 +307,7 @@ set noeb
 set vb
 set viminfo='100,<100,s100,h
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if version >= 801
+if version >= 801 && !has('nvim')
     set ttymouse=sgr
     set balloondelay=250
     set ballooneval
