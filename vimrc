@@ -36,12 +36,14 @@ map  go <Plug>(easymotion-bd-w)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " snippet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('nvim') || version >= 802
 Plug 'https://github.com/SirVer/ultisnips'
 Plug 'https://github.com/honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'https://github.com/sukima/xmledit.git'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,6 +61,7 @@ let g:signify_update_on_bufenter = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'https://github.com/tpope/vim-dispatch'
 Plug 'https://github.com/vim-utils/vim-man'
+Plug 'https://github.com/gauteh/vim-cppman'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'https://github.com/Yggdroot/indentLine'
 autocmd! User indentLine doautocmd indentLine Syntax
@@ -108,7 +111,7 @@ let g:tagbar_autofocus = 1
 let g:tagbar_ctags_bin=trim(system('which ctags'))
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if version >= 800
+if has('nvim-0.4.0') || has('patch-8.2.0750')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " misc
 "   coc-calc
@@ -177,7 +180,9 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold  * if line2byte(line("$") + 1) < 1024*1024 | silent call CocActionAsync('highlight') | endif
+autocmd BufWinEnter * if line2byte(line("$") + 1) > 2*1024*1024 | syntax clear | endif
+autocmd BufReadPre  * if getfsize(expand("%"))    > 2*1024*1024 | syntax clear | endif
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -214,16 +219,6 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
-
-" NOTE: do NOT use `nore` mappings
-" coc-translator
-" popup
-nmap T <Plug>(coc-translator-p)
-vmap T <Plug>(coc-translator-pv)
-
-" replace
-nmap R <Plug>(coc-translator-r)
-vmap R <Plug>(coc-translator-rv)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
@@ -313,9 +308,6 @@ if version >= 801 && !has('nvim')
     set ballooneval
     set balloonevalterm
 endif
-if version >= 800
-    set diffopt+=internal,algorithm:patience,indent-heuristic
-endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " No annoying sound on errors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -337,6 +329,8 @@ set nowrap
 set textwidth=0
 if exists('&colorcolumn')
   set colorcolumn=80
+  nnoremap <Leader>cc :set colorcolumn=80<cr>
+  nnoremap <Leader>ncc :set colorcolumn-=80<cr>
 endif
 set incsearch
 set ttyfast
@@ -349,11 +343,19 @@ syntax sync minlines=256
 autocmd BufEnter * :syn sync maxlines=500
 set showmatch
 set matchtime=5
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" diff setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if version >= 800
+    set diffopt+=internal,algorithm:patience,indent-heuristic
+endif
 if &diff
 "   set diffopt+=iwhite
     set cursorline
+    colorshceme github
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " go to last position
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif

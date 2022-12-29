@@ -13,7 +13,7 @@ if has("gui_macvim")
     set guifont=Menlo\ Regular:h12
     set fuoptions=maxvert,maxhorz
 elseif has("gui_gtk2")
-    set guifont=DejaVu\ Sans\ Mono\ 10
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 elseif has("gui_win32")
     set guifont=DejaVu\ Sans\ Mono:h12
     " set guifont=Consolas:h12:cANSI
