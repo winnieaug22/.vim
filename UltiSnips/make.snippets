@@ -20,7 +20,7 @@ snippet C
 GCOV_CFLAGS = -fprofile-arcs -ftest-coverage
 CC          = gcc $(GCOV_CFLAGS)
 CFLAGS      = -g -Wall -std=c99
-LIBS        = -lm
+LIBS        =
 INCPATH     =
 DIR         = \$(shell pwd)
 
@@ -67,7 +67,7 @@ CXX         = g++ $(GCOV_CFLAGS)
 CCXXFLAGS   = -g -Wall
 CFLAGS      = -std=c99 \$(CCXXFLAGS)
 CXXFLAGS    = -Weffc++ \$(CCXXFLAGS)
-LIBS        = -lm
+LIBS        =
 INCPATH     =
 DIR         = \$(shell pwd)
 
@@ -128,8 +128,8 @@ C_STATIC_OBJS    = \$(patsubst %.c,%_static.o,\$(wildcard \$(C_SOURCES)))
 C_DYNAMIC_OBJS   = \$(patsubst %.c,%_dynamic.o,\$(wildcard \$(C_SOURCES)))
 STATIC_OBJS      = \$(C_STATIC_OBJS)
 DYNAMIC_OBJS     = \$(C_DYNAMIC_OBJS)
-LIB_A            = \$(BASENAME).a
-LIB_SO           = \$(BASENAME).so
+LIB_A            = lib\$(BASENAME).a
+LIB_SO           = lib\$(BASENAME).so
 
 ###############################################################################
 .PHONY : clean
@@ -181,8 +181,8 @@ C_DYNAMIC_OBJS   = \$(patsubst %.c,%_dynamic.o,\$(wildcard \$(C_SOURCES)))
 CXX_DYNAMIC_OBJS = \$(patsubst %.cpp,%_dynamic.o,\$(wildcard \$(CXX_SOURCES)))
 STATIC_OBJS      = \$(C_STATIC_OBJS) \$(CXX_STATIC_OBJS)
 DYNAMIC_OBJS     = \$(C_DYNAMIC_OBJS) \$(CXX_DYNAMIC_OBJS)
-LIB_A            = \$(BASENAME).a
-LIB_SO           = \$(BASENAME).so
+LIB_A            = lib\$(BASENAME).a
+LIB_SO           = lib\$(BASENAME).so
 
 ###############################################################################
 .PHONY : clean
