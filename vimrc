@@ -352,7 +352,7 @@ endif
 if &diff
 "   set diffopt+=iwhite
     set cursorline
-    colorshceme github
+    colorscheme github
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
